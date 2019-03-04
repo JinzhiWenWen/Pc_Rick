@@ -317,7 +317,9 @@
       li{
         width: 100%;
         height: 365px;
-        margin-bottom: 24px;
+        margin-bottom: -24px;
+        // background: red;
+        padding-left:80px;
         img{
           width: 100%;
           height: 100%;
@@ -355,8 +357,8 @@
         }
         &:nth-of-type(1){
           &>div:nth-of-type(1){
-            width: 500px;
-            height: 365px;
+            width: 400px;
+            height: 305px;
             margin:0 30px 0 80px;
           }
           &>div:nth-of-type(2){
@@ -367,8 +369,8 @@
         }
         &:nth-of-type(2){
           &>div{
-            width: 500px;
-            height: 365px;
+            width: 450px;
+            height: 305px;
             &:nth-of-type(1){
               margin: 0 30px 0 20px;
             }
@@ -376,13 +378,13 @@
         }
         &:nth-of-type(3){
           &>div:nth-of-type(1){
-            width: 495px;
-            height: 365px;
+            width: 425px;
+            height: 305px;
             margin:0 30px 0 80px;
           }
           &>div:nth-of-type(2){
             width: 367px;
-            height: 269px;
+            height: 229px;
             margin: 48px 0;
           }
         }

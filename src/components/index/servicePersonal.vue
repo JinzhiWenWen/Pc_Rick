@@ -67,7 +67,7 @@
         name: "service-personal",
         data(){
           return {
-            imgUrl:"../../../static/images/personImg/",
+            imgUrl:"static/images/personImg/",
             personList:[
                 {name:"郑彦振",type:"UC，CC，监控",experience:"11年",professionType:"HCNA，HCNP",icon:"person_zyz.png"},
                 {name:"耿海涛",type:"UC，CC，监控",experience:"9年",professionType:"HCNA，HCNP",icon:"person_ght.png"},
@@ -116,7 +116,7 @@
       height: 75px;
       margin-right: 10px;
       background-size: 100% 100%;
-      background-image: url("../../../static/images/xiniuxiaoge.png");
+      background-image: url('../../../static/images/xiniuxiaoge.png');
       animation: fadeInLeft 2s;
     }
     .title{

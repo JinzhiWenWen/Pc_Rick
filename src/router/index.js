@@ -76,9 +76,29 @@ export default new Router({
       component:contactUs
     },
     {
-      name:'engineer',
+      name:'engineer',//注册
       path:'/engineer/engineer',
       component:engineer
+    },
+    {
+      path:'/engineer/loginIn',//登录
+      name:'LoginIn',
+      component:resolve=>require(['@/components/engineer/loginIn'],resolve)
+    },
+    {
+      path:'/plan/planPro',//产品解决方案
+      name:'PlanPro',
+      component:resolve=>require(['@/components/planPro/plan_pro'],resolve)
+    },
+    {
+      path:'/person/personOrder',//用户订单
+      name:'PersonOrder',
+      component:resolve=>require(['@/components/person/person_order'],resolve)
+    },
+    {
+      path:'/person/personSingle',//接单赚钱
+      name:'PersonSingle',
+      component:resolve=>require(['@/components/person/person_single'],resolve)
     },
     {
       name:'servicePlatformView',

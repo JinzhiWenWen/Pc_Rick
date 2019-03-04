@@ -21,7 +21,7 @@
             <!-- <a href="http://www.rightservicetech.com:8080/index" target="_blank">犀牛小哥平台</a> -->
           </li>
           <li>
-            <a href="#" onclick="showPage('need');" :class="{'active':activeArr[3]}" @click.native="changeTab(3)">产品与解决方案</a>
+            <router-link :to="{name:'PlanPro'}" :class="{'active':activeArr[3]}" @click.native="changeTab(3)">产品与解决方案</router-link>
           </li>
           <li>
             <router-link :to="{name:'successfulCaseView'}" :class="{'active':activeArr[4]}" @click.native="changeTab(4)">成功案例</router-link>
@@ -34,7 +34,10 @@
           </li>
         </ul>
       </div>
-      <img :src="doll" alt="" class="header-doll">
+      <!-- <img :src="doll" alt="" class="header-doll"> -->
+      <div class="header-doll">
+
+      </div>
     </div>
   </header>
 </template>
@@ -46,7 +49,7 @@
     data () {
       return {
         activeArr:[true],
-        doll:'../../static/images/right_doll.jpg'
+        doll:'/static/images/right_doll.png'
       }
     },
     mounted(){
@@ -82,11 +85,13 @@
     background-color: #fff;
     position: relative;
     .header-doll{
-      width: 120px;
-      height: 120px;
+      width:90px;
+      height:75px;
       position: absolute;
-      top:0px;
-      right:65px;
+      top:15px;
+      right:55px;
+      background: url('../../static/images/right_doll.png');
+      background-size: 100% 100%;
     }
   }
   .ht-nav{

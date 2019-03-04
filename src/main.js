@@ -12,6 +12,8 @@ import WOW from 'wowjs'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
+import '../static/css/index.css'
+import './assets/iconfont/iconfont.css'
 
 Vue.config.productionTip = false
 

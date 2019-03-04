@@ -11,11 +11,13 @@
         </router-link>
       </div>
       <div class="wow nt-img f-l p-r">
-        <img src="../../../static/images/enter_home_img2.png">
-        <div class="img-decription p-a" onclick="">
-          <span></span>
-          <p>接单赚钱</p>
-        </div>
+        <router-link tag="div" to="/person/personSingle">
+          <img src="../../../static/images/enter_home_img2.png">
+          <div class="img-decription p-a" onclick="">
+            <span></span>
+            <p>接单赚钱</p>
+          </div>
+        </router-link>
       </div>
       <div class="wow nt-img f-l p-r">
         <router-link :to="{name:'demand'}">
@@ -27,11 +29,13 @@
         </router-link>
       </div>
       <div class="wow nt-img f-l p-r">
-        <img src="../../../static/images/enter_home_img4.png">
-        <div class="img-decription p-a">
-          <span></span>
-          <p>订单追踪</p>
-        </div>
+        <router-link tag="div" to="/person/personOrder">
+          <img src="../../../static/images/enter_home_img4.png">
+          <div class="img-decription p-a">
+            <span></span>
+            <p>订单追踪</p>
+          </div>
+        </router-link>
       </div>
     </div>
   </div>
