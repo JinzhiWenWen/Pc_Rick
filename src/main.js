@@ -14,7 +14,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import '../static/css/index.css'
 import './assets/iconfont/iconfont.css'
-
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI)
 Vue.config.productionTip = false
 
 router.afterEach((to,from,next) => {

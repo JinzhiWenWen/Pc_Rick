@@ -35,9 +35,11 @@
         </ul>
       </div>
       <!-- <img :src="doll" alt="" class="header-doll"> -->
-      <div class="header-doll">
-
-      </div>
+      <router-link :to="{name:'LoginIn'}" tag="div" class="header-doll">
+        <div class="header-msg">
+          点我登录
+        </div>
+      </router-link>
     </div>
   </header>
 </template>
@@ -79,6 +81,7 @@
     background-color: #fff;
     height: 111px;
     overflow-y: hidden;
+    box-shadow: 0px 0px 10px #999;
   }
   .header-box{
     margin: 0 auto;
@@ -92,6 +95,21 @@
       right:55px;
       background: url('../../static/images/right_doll.png');
       background-size: 100% 100%;
+      cursor:pointer;
+      .header-msg{
+        width: 100px;
+        height: 30px;
+        background: url('../../static/images/header_msg.png');
+        background-size: 100%  100%;
+        position: absolute;
+        left:-110px;
+        top:-5px;
+        text-align: center;
+        line-height: 28px;
+        color:white;
+        font-weight: bold;
+        font-size: 12px;
+      }
     }
   }
   .ht-nav{
