@@ -1,49 +1,5 @@
 <template>
   <div class="engineer w100">
-    <!-- <div class="banner"></div> -->
-    <!-- <div class="content">
-      <div class="register-box">
-        <div class="input-row clearfix">
-          <p class="f-l">*姓名</p>
-          <div class="f-l p-r">
-            <input placeholder="请输入您的姓名" v-model="name"/>
-            <span class="remind" v-show="nameRemind">必填项</span>
-          </div>
-        </div>
-        <div class="input-row clearfix">
-          <p class="f-l">*手机号码</p>
-          <div class="f-l p-r">
-            <input placeholder="请输入11位手机号码" v-model="phone"/>
-            <span class="remind" v-show="phoneRemind">{{phoneMsg}}</span>
-          </div>
-        </div>
-        <div class="input-row clearfix">
-          <p class="f-l">*登录名</p>
-          <div class="f-l p-r">
-            <input placeholder="请输入6-16个字符" v-model="username"/>
-            <span class="remind" v-show="usernameRemind">{{usernameMsg}}</span>
-          </div>
-        </div>
-        <div class="input-row clearfix">
-          <p class="f-l">*密码</p>
-          <div class="f-l p-r">
-            <input type="password" placeholder="请输入密码" v-model="password"/>
-            <span class="remind" v-show="passwordRemind">{{passwordMsg}}</span>
-          </div>
-        </div>
-        <div class="input-row clearfix">
-          <p class="f-l">*确认密码</p>
-          <div class="f-l p-r">
-            <input type="password" placeholder="请确认密码" v-model="rPassword"/>
-            <span class="remind" v-show="rPasswordRemind">{{passwordMsg}}</span>
-          </div>
-        </div>
-        <div class="submit-btn" @click="registerSubmit">
-          立即提交
-        </div>
-        <div class="success" v-show="successRemind">恭喜您，注册成功</div>
-      </div>
-    </div> -->
     <div class="engineer-content">
       <div class="engineer-box">
         <div class="" style="display:flex;">
@@ -94,7 +50,9 @@
 </template>
 
 <script>
+import {mapMutations} from 'vuex'
     export default {
+      inject:['reload'],
         name: "engineer",
         data(){
           return{
@@ -119,6 +77,7 @@
           }
         },
         methods:{
+          ...mapMutations(['userMes_fn']),
           noName(){//检测姓名
             if(this.userName==null){
               this.isHasName=true;
@@ -201,8 +160,8 @@
                   _vm.isTurn=false;
                   _vm.turnEng=false;
                   _vm.engText='注册';
-                  console.log(res)
                   if(res.data.code==0){
+                    _vm.userMes_fn(res.data.data)
                     _vm.$notify({
                       title: '提示',
                       message: '注册成功，系统将默认为您登录',
@@ -210,6 +169,7 @@
                       offset:100
                     });
                     _vm.$router.back(-1);
+                    _vm.reload();
                   }else if(res.data.code==115){
                     _vm.isNumber='*此手机号已注册';
                     _vm.isHasPhone=true;
@@ -217,7 +177,6 @@
                     _vm.isNickName='*此登录名已注册'
                     _vm.isHasNickName=true;
                   }
-                  console.log(res)
                 }).catch((err)=>{
                   console.log(err)
                 })

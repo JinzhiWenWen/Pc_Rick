@@ -34,39 +34,72 @@
           </li>
         </ul>
       </div>
+      <p class="header_oper" v-show="isLogin">
+        <span class="oper_box">
+          <router-link :to="{name:'engineer'}" tag="span">注册</router-link>
+          <span>|</span>
+          <router-link :to="{name:'LoginIn'}" tag="span">登录</router-link>
+        </span>
+      </p>
+      <p v-show="hasLogin">
+        欢迎您，<span style="color:#eb7a1d;">{{userMes.nickname}}</span>(
+        <span style="cursor:pointer;text-decoration:underline;color:#eb7a1d;" @click="loginOut()">退出</span>)
+      </p>
       <!-- <img :src="doll" alt="" class="header-doll"> -->
-      <router-link :to="{name:'LoginIn'}" tag="div" class="header-doll">
-        <div class="header-msg">
-          点我登录
-        </div>
-      </router-link>
+      <!-- <Mas/> -->
     </div>
   </header>
 </template>
 
 <script>
   import bus from "../assets/eventBus"
+  import Mas from '@/components/mascot'
+  import {mapState,mapMutations} from 'vuex'
   export default {
     name: 'head-nav',
+    inject:['reload'],
     data () {
       return {
         activeArr:[true],
-        doll:'/static/images/right_doll.png'
+        doll:'/static/images/right_doll.png',
+        isLogin:true,//是否登录
+        hasLogin:false,//已登录
       }
+    },
+    components:{
+      Mas
+    },
+    computed:{
+      ...mapState(['userMes'])
     },
     mounted(){
       var that = this;
       bus.$on("clickChannel",function (activeArr) {
         that.activeArr = activeArr;
       });
+      console.log(that.userMes);
+      if(that.userMes.nickname){
+        that.isLogin=false;
+        that.hasLogin=true;
+      }else{
+        that.isLogin=true;
+        that.hasLogin=false;
+      }
     },
     methods:{
+      ...mapMutations(['userMes_fn']),
       changeTab(num){
         for(var i=0;i<this.activeArr.length;i++){
           if(i!=num)
             this.$set(this.activeArr,i,false);
         }
         this.$set(this.activeArr,num,true);
+      },
+      loginOut(){//注销登录
+        this.userMes_fn('');
+        this.isLogin=true;
+        this.hasLogin=false;
+        this.reload();
       }
     }
   }
@@ -86,29 +119,16 @@
   .header-box{
     margin: 0 auto;
     background-color: #fff;
-    position: relative;
-    .header-doll{
-      width:90px;
-      height:75px;
-      position: absolute;
-      top:15px;
-      right:55px;
-      background: url('../../static/images/right_doll.png');
-      background-size: 100% 100%;
-      cursor:pointer;
-      .header-msg{
-        width: 100px;
-        height: 30px;
-        background: url('../../static/images/header_msg.png');
-        background-size: 100%  100%;
-        position: absolute;
-        left:-110px;
-        top:-5px;
+    .header_oper{
+      height: 111px;
+      width: 100%;
+      .oper_box{
+        display: inline-block;
+        width: 90px;
         text-align: center;
-        line-height: 28px;
-        color:white;
-        font-weight: bold;
-        font-size: 12px;
+        span{
+          cursor:pointer;
+        }
       }
     }
   }

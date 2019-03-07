@@ -126,10 +126,15 @@
       letter-spacing: 2px;
     }
     .swiper-button-prev{
-      left: 50px;
+      background: url('../../../static/images/next_icon.png')!important;
+      background-size: 100% 100%!important;
+      left: 40px;
+      transform:rotate(180deg);
     }
     .swiper-button-next{
-      right: 50px;
+      background: url('../../../static/images/next_icon.png')!important;
+      background-size: 100% 100%!important;
+      right: 40px;
     }
   }
   .item-content-box{

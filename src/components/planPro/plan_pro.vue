@@ -15,7 +15,9 @@
         <li v-for="(plan,index) in list">
           <img :src="plan.img" alt="">
           <p>
-            <span class="iconfont"></span>
+            <span class="iconfont">
+              <img :src="plan.icon" alt="">
+            </span>
             <span class="title">{{plan.title}}</span>
           </p>
         </li>
@@ -31,32 +33,39 @@ export default {
     return{
       list:[
         {
-          img:'../../../static/images/enter_home_img1.png',
-          title:'UC&C'
+          img:'static/images/ucc_bg.png',
+          title:'UC&C',
+          icon:'static/images/ucc_icon.png'
         },
         {
-          img:'../../../static/images/enter_home_img1.png',
-          title:'UC&C'
+          img:'static/images/it_bg.png',
+          title:'IT及云服务',
+          icon:'static/images/it_icon.png'
         },
         {
-          img:'../../../static/images/enter_home_img1.png',
-          title:'UC&C'
+          img:'static/images/face_bg.png',
+          title:'视频会议',
+          icon:'static/images/face_icon.png'
         },
         {
-          img:'../../../static/images/enter_home_img1.png',
-          title:'UC&C'
+          img:'static/images/mon_bg.png',
+          title:'视频监控',
+          icon:'static/images/mon_icon.png'
         },
         {
-          img:'../../../static/images/enter_home_img1.png',
-          title:'UC&C'
+          img:'static/images/data_bg.png',
+          title:'数据通信',
+          icon:'static/images/data_icon.png'
         },
         {
-          img:'../../../static/images/enter_home_img1.png',
-          title:'UC&C'
+          img:'static/images/pv_bg.png',
+          title:'光伏',
+          icon:'static/images/pv_icon.png'
         },
         {
-          img:'../../../static/images/enter_home_img1.png',
-          title:'UC&C'
+          img:'static/images/base_bg.png',
+          title:'能基',
+          icon:'static/images/base_icon.png'
         }
       ]
     }
@@ -121,18 +130,23 @@ export default {
         position: relative;
         .iconfont{
           display: inline-block;
-          width: 40px;
-          height: 40px;
-          background: red;
+          width: 30px;
+          height: 30px;
+          // background: red;
           border-radius:50%;
           position: absolute;
-          left:60px;
-          top:5px;
+          left:50px;
+          top:10px;
+          img{
+            width: 100%;
+            height: 100%;
+          }
         }
         .title{
           font-size: 20px;
           position: absolute;
           top:10px;
+          left:100px;
         }
       }
     }

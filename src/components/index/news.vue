@@ -17,7 +17,10 @@
       <div class="company-news">
         <p class="company-title">公司新闻</p>
         <ul>
-          <router-link tag="li"  v-for="(news,index) in newsListT" :to="{name:'newsDetails',query:{id:news.id}}">
+          <router-link tag="li"  v-for="(news,j) in newsListT"
+          :to="{name:'newsDetails',query:{id:news.id}}"
+          :key="j"
+          >
             <p class="company-pic">
               <img :src="urlPath+news.imgName" alt="">
             </p>
@@ -33,7 +36,10 @@
       <div class="work-news">
         <p class="company-title">行业资讯</p>
         <ul>
-          <router-link tag="li" v-for="(info,index) in newsList" :to="{name:'newsDetails',query:{id:info.id}}">
+          <router-link tag="li" v-for="(info,i) in newsList"
+           :to="{name:'newsDetails',query:{id:info.id}}"
+           :key="i"
+           >
             <p class="company-pic">
               <img :src="urlPath+info.imgName"  alt="">
             </p>
@@ -98,7 +104,6 @@
               page:0
             }
           }).then((res)=>{
-            console.log(res)
             this.newsListT=res.data.data.content;
             for(let i in _this.newsListT){
               if(_this.newsListT[i].title.length>10){

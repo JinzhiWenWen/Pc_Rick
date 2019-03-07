@@ -12,29 +12,28 @@
         <ul class="case-detail clearfix">
           <li class="clearfix" v-if="solutionArr1.length>0">
             <div class="f-l" v-for="(solution,index) in solutionArr1" :key="solution.id">
-              <img :src="urlPath+solution.imgName"/>
-              <router-link class="detail img-mark" :to="{name:'successfulCaseDetail',query:{id:solution.id}}">
-                <h1>{{solution.title}}</h1>
-                <p>{{solution.intro}}</p>
-              </router-link>
+              <!-- <img :src=""/> -->
+              <router-link :src="urlPath+solution.imgName" tag="img" :to="{name:'successfulCaseDetail',query:{id:solution.id}}"></router-link>
             </div>
           </li>
           <li class="clearfix" v-if="solutionArr2.length>0">
             <div class="f-l" v-for="(solution,index) in solutionArr2" :key="solution.id">
-              <img :src="urlPath+solution.imgName"/>
-              <router-link class="detail img-mark" :to="{name:'successfulCaseDetail',query:{id:solution.id}}">
-                <h1>{{solution.title}}</h1>
-                <p>{{solution.intro}}</p>
-              </router-link>
+              <!-- <img :src=""/> -->
+              <router-link :src="urlPath+solution.imgName" tag="img" :to="{name:'successfulCaseDetail',query:{id:solution.id}}"></router-link>
+              <!-- <router-link class="detail img-mark" > -->
+                <!-- <h1>{{solution.title}}</h1>
+                <p>{{solution.intro}}</p> -->
+              <!-- </router-link> -->
             </div>
           </li>
           <li class="clearfix" v-if="solutionArr3.length>0">
             <div class="f-l" v-for="(solution,index) in solutionArr3" :key="solution.id">
-              <img :src="urlPath+solution.imgName"/>
-              <router-link class="detail img-mark" :to="{name:'successfulCaseDetail',query:{id:solution.id}}">
-                <h1>{{solution.title}}</h1>
-                <p>{{solution.intro}}</p>
-              </router-link>
+              <!-- <img :src=""/> -->
+              <router-link :src="urlPath+solution.imgName" tag="img" :to="{name:'successfulCaseDetail',query:{id:solution.id}}"></router-link>
+              <!-- <router-link class="detail img-mark"> -->
+                <!-- <h1>{{solution.title}}</h1>
+                <p>{{solution.intro}}</p> -->
+              <!-- </router-link> -->
             </div>
           </li>
         </ul>
@@ -340,7 +339,7 @@
           height: 100%;
           top:0;
           left: 0;
-          background-color: rgba(0,0,0,0.4);
+          // background-color: rgba(0,0,0,0.4);
           color: #fff;
           text-decoration: none;
           &>h1{

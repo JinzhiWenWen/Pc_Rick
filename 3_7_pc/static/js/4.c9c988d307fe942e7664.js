@@ -1,0 +1,2 @@
+webpackJsonp([4],{"pyM/":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var s={components:{Deve:n("jpxa").a}},r={render:function(){var e=this.$createElement,t=this._self._c||e;return t("div",{staticClass:"person-single w100"},[t("Deve")],1)},staticRenderFns:[]};var a=n("C7Lr")(s,r,!1,function(e){n("wuAV")},"data-v-4b8925de",null);t.default=a.exports},wuAV:function(e,t){}});
+//# sourceMappingURL=4.c9c988d307fe942e7664.js.map

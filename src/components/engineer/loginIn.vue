@@ -17,7 +17,7 @@
                 <span style="color:red;" v-show="isHasPhone">*请输入您的手机号或登录名</span>
               </li>
               <li>
-                <input type="text" @blur="noPass()" v-model="userPass" placeholder="请输入您的密码" name="" value="">
+                <input type="password" @blur="noPass()" v-model="userPass" placeholder="请输入您的密码" name="" value="">
                 <span style="color:red;" v-show="isHasPass">*请输入您的密码</span>
               </li>
             </ul>
@@ -36,10 +36,12 @@
 </template>
 
 <script>
+import {mapMutations} from 'vuex'
 export default {
+  inject:['reload'],
   data(){
     return{
-      turnLogin:false,//是否禁用安奴
+      turnLogin:false,//是否禁用按钮
       engText:'登录',//按钮文本
       isTurn:false,//是否启用Loading
       isHasPhone:false,//是否填写账号
@@ -49,6 +51,7 @@ export default {
     }
   },
   methods:{
+    ...mapMutations(['userMes_fn']),
     noPhone(){//检测账号
       if(this.userNumber==null){
         this.isHasPhone=true;
@@ -85,6 +88,7 @@ export default {
           _vm.turnLogin=false;
           _vm.isTurn=false;
           if(res.data.code==0){
+            _vm.userMes_fn(res.data.data);
             _vm.$notify({
               title: '提示',
               message: '登录成功',
@@ -92,6 +96,7 @@ export default {
               offset:100
             });
             _vm.$router.back(-1);
+            _vm.reload();
           }else{
             _vm.$notify.error({
               title: '提示',

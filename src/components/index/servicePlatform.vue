@@ -5,9 +5,10 @@
         <h1 class="title"><span class="wow xnxg"></span>ICT服务平台</h1>
         <h2 class="sub-title">一站式ICT服务平台</h2>
         <ul class="detail clearfix">
-          <li><i></i>高效</li>
-          <li><i></i>便捷</li>
-          <li><i></i>共赢</li>
+          <li><i></i>以高性价比的价格</li>
+          <li><i></i>提供优惠的ICT服务</li>
+          <li><i></i>具备丰富的工程师资源</li>
+          <li><i></i>实现高效的交付体系</li>
         </ul>
         <router-link class="more" :to="{name:'servicePlatformView'}">了解更多</router-link>
       </div>
@@ -69,7 +70,7 @@
       }
       .more{
         display: block;
-        margin-top: 38px;
+        margin-top: 28px;
         font-size: 20px;
         text-decoration: underline;
         color: #000;
