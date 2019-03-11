@@ -188,11 +188,13 @@ export default {
           padding-left:15px;
           position: relative;
           span{
+            display:inline-block;
             position: absolute;
             left:12px;
             color:red;
             font-size: 12px;
-            bottom: -26px;
+            top:60px;
+            line-height: 10px;
           }
         }
       }

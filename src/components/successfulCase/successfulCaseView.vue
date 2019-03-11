@@ -164,7 +164,7 @@
               this.$jq("#btn7").text(pageNum);
 
               //可改变当前页的button样式
-              this.$jq("#btn4").css("background-color","#F19707");
+              this.$jq("#btn4").css({"background-color":"#F19707","color":"white"});
 
               //先处理"上一页"和"下一页"的情况
               if(currentPage==1){//如果当前页为首页
@@ -339,7 +339,6 @@
           height: 100%;
           top:0;
           left: 0;
-          // background-color: rgba(0,0,0,0.4);
           color: #fff;
           text-decoration: none;
           &>h1{
@@ -407,8 +406,8 @@
       outline:0;
       cursor: pointer;
       &:hover{
-        border:1px solid #4f90fb;
-        color:#4f90fb;
+        border:1px solid #eb7a1d;
+        color:#eb7a1d;
       }
     }
   }

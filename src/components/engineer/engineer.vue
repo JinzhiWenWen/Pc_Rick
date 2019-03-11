@@ -263,7 +263,8 @@ import {mapMutations} from 'vuex'
               left:12px;
               color:red;
               font-size: 12px;
-              bottom: -26px;
+              top:45px;
+              line-height: 10px;
             }
           }
         }

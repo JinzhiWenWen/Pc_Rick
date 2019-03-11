@@ -46,7 +46,7 @@
         <span style="cursor:pointer;text-decoration:underline;color:#eb7a1d;" @click="loginOut()">退出</span>)
       </p>
       <!-- <img :src="doll" alt="" class="header-doll"> -->
-      <!-- <Mas/> -->
+      <Mas/>
     </div>
   </header>
 </template>
@@ -110,7 +110,7 @@
   .header-card{
     position: fixed;
     top: 0;
-    z-index: 10;
+    z-index: 999;
     background-color: #fff;
     height: 111px;
     overflow-y: hidden;

@@ -1,17 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '../components/index'
-import headNav from '../components/head'
-import footer from '../components/footer'
-import newsView from '../components/news/newsView'
-import newsDetails from '../components/news/newsDetails'
-import demand from '../components/demand/demand'
-import aboutUs from '../components/aboutUs/aboutUs'
-import contactUs from '../components/contactUs/contactUs'
-import engineer from '../components/engineer/engineer'
-import servicePlatformView from '../components/servicePlatform/servicePlatformView'
-import successfulCaseView from '../components/successfulCase/successfulCaseView'
-import successfulCaseDetail from '../components/successfulCase/successfulCaseDetail'
+import headNav from '@/components/head'
+import footer from '@/components/footer'
 
 //安装全局组件
 Vue.component('headNav',headNav)
@@ -53,32 +44,32 @@ export default new Router({
     {
       name:'newsView',
       path:'/news/newsView',
-      component:newsView
+      component:resolve=>require(['@/components/news/newsView'],resolve)
     },
     {
       name:'newsDetails',
       path:'/news/newsDetails',
-      component:newsDetails
+      component:resolve=>require(['@/components/news/newsDetails'],resolve)
     },
     {
       name:'demand',
       path:'/demand/demand',
-      component:demand
+      component:resolve=>require(['@/components/demand/demand'],resolve)
     },
     {
       name:'aboutUs',
       path:'/aboutUs/aboutUs',
-      component:aboutUs
+      component:resolve=>require(['@/components/aboutUs/aboutUs'],resolve)
     },
     {
       name:'contactUs',
       path:'/contactUs/contactUs',
-      component:contactUs
+      component:resolve=>require(['@/components/contactUs/contactUs'],resolve)
     },
     {
       name:'engineer',//注册
       path:'/engineer/engineer',
-      component:engineer
+      component:resolve=>require(['@/components/engineer/engineer'],resolve)
     },
     {
       path:'/engineer/loginIn',//登录
@@ -103,17 +94,17 @@ export default new Router({
     {
       name:'servicePlatformView',
       path:'/servicePlatform/servicePlatformView',
-      component:servicePlatformView
+      component:resolve=>require(['@/components/servicePlatform/servicePlatformView'],resolve)
     },
     {
       name:'successfulCaseView',
       path:'/successfulCase/successfulCaseView',
-      component:successfulCaseView
+      component:resolve=>require(['@/components/successfulCase/successfulCaseView'],resolve)
     },
     {
       name:'successfulCaseDetail',
       path:'/successfulCase/successfulCaseDetail',
-      component:successfulCaseDetail
+      component:resolve=>require(['@/components/successfulCase/successfulCaseDetail'],resolve)
     }
   ]
 })
