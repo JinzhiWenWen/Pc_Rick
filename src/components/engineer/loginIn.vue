@@ -95,7 +95,7 @@ export default {
               type: 'success',
               offset:100
             });
-            _vm.$router.back(-1);
+            _vm.$router.push('/');
             _vm.reload();
           }else{
             _vm.$notify.error({
@@ -128,14 +128,16 @@ export default {
   background: url('../../../static/images/being.png');
   background-size: 100% 100%;
   box-sizing: border-box;
-  padding-top:150px;
+  position: relative;
   .login-box{
     width: 500px;
     height: 300px;
     min-width: 450px;
     min-height: 250px;
+    position: absolute;
+    top:15vh;
+    right:8vh;
     background: white;
-    margin-left:1000px;
     border-radius:12px;
     box-shadow: 10px 20px 50px #000;
     padding-top:50px;

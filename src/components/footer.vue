@@ -48,7 +48,9 @@
 
 <style lang="scss" scoped>
   .footer{
-    background-color: rgba(49,49,49,10);
+    z-index: 1000;
+    background: rgba(49,49,49,10);
+    opacity: 1;
     .f-copy{
       width: 1380px;
       height: 100%;

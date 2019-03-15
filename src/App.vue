@@ -33,7 +33,7 @@
   }
 </script>
 
-<style scoped lang="scss">
+<style>
   #app{
     margin: 0 auto;
     min-width: 1420px;
@@ -41,5 +41,8 @@
   }
   .app-body{
     margin-top: 111px;
+  }
+  #nprogress .bar {
+    background: #eb7a1d !important;
   }
 </style>

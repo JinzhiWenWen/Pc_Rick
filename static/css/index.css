@@ -4,3 +4,8 @@
 .el-loading-spinner i{
 	color:#e86521!important;
 }
+
+.el-button {
+	background: #e86521!important;
+	border:1px solid #e86521!important;
+}

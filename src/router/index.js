@@ -3,15 +3,17 @@ import Router from 'vue-router'
 import Index from '../components/index'
 import headNav from '@/components/head'
 import footer from '@/components/footer'
-
+import NProgress from 'nprogress'
 //安装全局组件
 Vue.component('headNav',headNav)
 Vue.component('footerNav',footer)
 
 // 数据请求
 import Axios from 'axios'
-Axios.defaults.baseURL = 'http://rightservicetech.com:8080/'
-Vue.prototype.url="http://rightservicetech.com:8080/"
+// Axios.defaults.baseURL = 'http://rightservicetech.com:8080/'
+Axios.defaults.baseURL = 'http://hexsoft.top:8080'
+// Vue.prototype.url="http://rightservicetech.com:8080/"
+Vue.prototype.url="http://hexsoft.top:8080"
 Vue.prototype.$ajax = Axios
 Vue.prototype.dataURL = function (file,title,id) {
   id = (id === undefined)?'':id;
@@ -30,7 +32,7 @@ import '../../static/css/hover.css'
 import '../../static/css/reset.css'
 import 'swiper/dist/css/swiper.css'
 
-export default new Router({
+const router= new Router({
   routes: [
     {
       path:'/',
@@ -105,6 +107,49 @@ export default new Router({
       name:'successfulCaseDetail',
       path:'/successfulCase/successfulCaseDetail',
       component:resolve=>require(['@/components/successfulCase/successfulCaseDetail'],resolve)
+    },
+    {
+      name:'Mine',//个人中心
+      path:'/mine',
+      component:resolve=>require(['@/components/mine/mine'],resolve),
+      children:[
+        {
+          name:'PersonMes',//用户资料
+          path:'/mine/personMes',
+          component:resolve=>require(['@/components/mine/person_mes'],resolve)
+        },
+        {
+          name:'ChangeMes',//编辑资料
+          path:'/mine/changeMes',
+          component:resolve=>require(['@/components/mine/change_mes'],resolve)
+        },
+        {
+          name:'PersonCard',//身份认证
+          path:'/mine/personCard',
+          component:resolve=>require(['@/components/mine/person_card'],resolve)
+        },
+        {
+          name:'PersonSkill',//技能认证
+          path:'/mine/personSkill',
+          component:resolve=>require(['@/components/mine/person_skills'],resolve)
+        },
+        {
+          name:'PersonCation',//资质申请
+          path:'/mine/personCation',
+          component:resolve=>require(['@/components/mine/person_cation'],resolve)
+        }
+      ],
+      redirect:'/mine/personMes'
     }
   ]
+});
+router.beforeEach((to,from,next)=>{
+  //启用加载进度条
+  NProgress.start();
+  next();
+});
+router.afterEach(()=>{
+  //路由结束关闭进度条
+  NProgress.done()
 })
+export default router;

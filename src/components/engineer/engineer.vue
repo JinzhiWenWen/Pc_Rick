@@ -168,7 +168,7 @@ import {mapMutations} from 'vuex'
                       type: 'success',
                       offset:100
                     });
-                    _vm.$router.back(-1);
+                    _vm.$router.push('/');
                     _vm.reload();
                   }else if(res.data.code==115){
                     _vm.isNumber='*此手机号已注册';
@@ -200,14 +200,17 @@ import {mapMutations} from 'vuex'
     min-height: 600px;
     background:url("../../../static/images/login_bg.png");
     background-size: 100% 100%;
-    padding-top:130px;
+    position: relative;
     .engineer-box{
       width: 500px;
       height: 350px;
       min-width: 450px;
       min-height: 250px;
+      position: absolute;
+      right:8vh;
+      top:15vh;
       background: white;
-      margin-left:1000px;
+
       border-radius:12px;
       box-shadow: 10px 20px 50px #000;
       padding-top:30px;

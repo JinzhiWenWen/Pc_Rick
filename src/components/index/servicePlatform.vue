@@ -89,7 +89,7 @@
       background-image: url("../../../static/images/service_bg.png");
       .service-content{
         position: absolute;
-        top:100px;
+        top:50px;
         left: 100px;
       }
     }

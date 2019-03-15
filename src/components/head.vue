@@ -42,7 +42,7 @@
         </span>
       </p>
       <p v-show="hasLogin">
-        欢迎您，<span style="color:#eb7a1d;">{{userMes.nickname}}</span>(
+        欢迎您，<span style="color:#eb7a1d;cursor:pointer;" @click="comeMine()">{{userMes.nickname}}</span>(
         <span style="cursor:pointer;text-decoration:underline;color:#eb7a1d;" @click="loginOut()">退出</span>)
       </p>
       <!-- <img :src="doll" alt="" class="header-doll"> -->
@@ -88,6 +88,9 @@
     },
     methods:{
       ...mapMutations(['userMes_fn']),
+      comeMine(){//跳转个人中心
+        this.$router.push('/mine')
+      },
       changeTab(num){
         for(var i=0;i<this.activeArr.length;i++){
           if(i!=num)
