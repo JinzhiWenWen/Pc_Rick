@@ -1,4 +1,4 @@
-<!-- 技能认证 -->
+<!-- 身份证上传二版 -->
 <template lang="html">
   <div class="person_cardSec">
     <div class="card_up">
@@ -28,7 +28,7 @@
 
     </div>
     <p class="save_title">
-      <span style="color:red;">*</span>请上传清晰技能证书正反面照片，并且为 .jpg或.png格式（图片将被等比压缩为260*180大小，长度相近的图片效果更佳，最多可以上传5张证书图片）
+      <span style="color:red;">*</span>请上传清晰身份证正反面照片，并且为 .jpg或.png格式（图片将被等比压缩为260*180大小，长度相近的图片效果更佳）
     </p>
     <p class="save_btn">
       <button type="button" name="button" @click="upFile()">上传</button>
@@ -57,7 +57,7 @@ export default {
   },
   watch:{
     picLength(val,oldVal){
-      if(val>=5){
+      if(val>=2){
         this.isHasPic=false
       }else{
         this.isHasPic=true
@@ -66,14 +66,14 @@ export default {
   },
   mounted(){
     if(this.userMes.engineerVO){
-      if(this.userMes.engineerVO.certificateFiles.length>=1){
-        this.cardBefore=this.userMes.engineerVO.certificateFiles;
+      if(this.userMes.engineerVO.identityFiles.length>=1){
+        this.cardBefore=this.userMes.engineerVO.identityFiles;
         this.isHasService=true;
       }else{
         this.isHasService=false;
       }
     };
-    if(this.picLength>=5){
+    if(this.picLength>=2){
       this.isHasPic=false
     }else{
       this.isHasPic=true
@@ -102,14 +102,14 @@ export default {
       if(_vm.userMes.engineerVO.state==0){
         let formData=new FormData();
         formData.append('id',_vm.cardBefore[index].id);
-        formData.append('type','certificateFile');
+        formData.append('type','identityFile');
         _vm.$ajax.post(_vm.url+'/mobile/deleteEngineerFile',formData).then((res)=>{
           if(res.data.code==0){
             this.$alert('删除成功', '提示', {
                confirmButtonText: '确定',
              });
             _vm.userMes_fn(res.data.data);
-            _vm.cardBefore=res.data.data.engineerVO.certificateFiles;
+            _vm.cardBefore=res.data.data.engineerVO.identityFiles;
           }else{
             this.$alert('当前账户异常，请稍后再试', '提示', {
                confirmButtonText: '确定',
@@ -122,7 +122,7 @@ export default {
           console.log(err)
         })
       }else{
-        this.$alert('当前资料认证中或已认证，暂时无法修改，如需修改请联系客服', '提示', {
+        this.$alert('当前资料认证中或已认证，如需修改请联系客服', '提示', {
            confirmButtonText: '确定',
          });
       }
@@ -153,18 +153,15 @@ export default {
       let _vm=this;
       let formData=new FormData();
       formData.append('id',_vm.userMes.engineerVO.id)
-      formData.append('certificateUploadFiles',_vm.cardFile[0]);
-      formData.append('certificateUploadFiles',_vm.cardFile[1]);
-      formData.append('certificateUploadFiles',_vm.cardFile[2]);
-      formData.append('certificateUploadFiles',_vm.cardFile[3]);
-      formData.append('certificateUploadFiles',_vm.cardFile[4]);
+      formData.append('identityUploadFiles',_vm.cardFile[0]);
+      formData.append('identityUploadFiles',_vm.cardFile[1]);
       _vm.$ajax.post(_vm.url+'/mobile/uploadEngineerFile',formData).then((res)=>{
         if(res.data.code==0){
           this.$alert('上传成功', '提示', {
              confirmButtonText: '确定',
            });
           _vm.userMes_fn(res.data.data);
-          _vm.cardBefore=res.data.data.engineerVO.certificateFiles;
+          _vm.cardBefore=res.data.data.engineerVO.identityFiles;
           _vm.cardShow=[];
           _vm.cardFile=[];
         }else{

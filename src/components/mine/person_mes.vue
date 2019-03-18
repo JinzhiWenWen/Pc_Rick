@@ -1,42 +1,50 @@
 <!-- 用户资料页 -->
 <template lang="html">
   <div class="person_mes">
-    <div class="mes_title">
-      <ul>
-        <li>姓名：</li>
-        <li>邮箱：</li>
-        <li>联系方式：</li>
-        <li>工作年限：</li>
-        <li>工作区域：</li>
-        <li>身份认证：</li>
-        <li>技能评估：</li>
-        <li>已认证技能：</li>
-      </ul>
+    <div class="" style="width:100%;display:flex;">
+      <div class="mes_title">
+        <ul>
+          <li>姓名：</li>
+          <li>邮箱：</li>
+          <li>联系方式：</li>
+          <li>工作年限：</li>
+          <li>工作区域：</li>
+          <li>身份认证：</li>
+          <li>技能评估：</li>
+          <li>已认证技能：</li>
+        </ul>
+      </div>
+      <div class="mes_con">
+        <ul>
+          <li>{{userMes.engineerVO.name}}</li>
+          <li>{{userMes.email}}</li>
+          <li>{{userMes.engineerVO.phone}}</li>
+          <li>{{userMes.engineerVO.workYear}}年</li>
+          <li>
+            <span v-if="userMes.engineerVO.childPlaces.length!=0">{{place}}</span>
+            <span v-else>未选择工作区域</span>
+          </li>
+          <li>
+            <span v-if="userMes.engineerVO.state==1||userMes.engineerVO.state==2">已认证</span>
+            <span v-else>未认证</span>
+          </li>
+          <li>
+            <span v-if="userMes.engineerVO.identifyState==3">已评估</span>
+            <span v-else>未评估</span>
+          </li>
+          <li>
+            <span v-if="userMes.engineerVO.levels.length!=0">{{Ident}}</span>
+            <span v-else>未认证</span>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="mes_con">
-      <ul>
-        <li>{{userMes.engineerVO.name}}</li>
-        <li>{{userMes.email}}</li>
-        <li>{{userMes.engineerVO.phone}}</li>
-        <li>{{userMes.engineerVO.workYear}}年</li>
-        <li>
-          <span v-if="userMes.engineerVO.childPlaces.length!=0">{{place}}</span>
-          <span v-else>未选择工作区域</span>
-        </li>
-        <li>
-          <span v-if="userMes.engineerVO.state==1||userMes.engineerVO.state==2">已认证</span>
-          <span v-else>未认证</span>
-        </li>
-        <li>
-          <span v-if="userMes.engineerVO.identifyState==3">已评估</span>
-          <span v-else>未评估</span>
-        </li>
-        <li>
-          <span v-if="userMes.engineerVO.levels.length!=0">{{Ident}}</span>
-          <span v-else>未认证</span>
-        </li>
-      </ul>
+    <div class="qr_box">
+      <img class="phone" src="../../../static/images/cation_phone.png" alt="">
+      <img class="qr" src="../../../static/images/company_qr.jpg" alt="">
+      <br/><span>扫码关注微信公众号</span>
     </div>
+
   </div>
 </template>
 
@@ -83,8 +91,8 @@ export default {
 <style lang="scss" scoped>
 .person_mes{
   width: 100%;
-  height: 80%;
-  display: flex;
+  height: 100%;
+  position: relative;
   .mes_title{
     width: 25%;
     height: 100%;
@@ -111,6 +119,26 @@ export default {
         box-sizing: border-box;
         padding-left: 20px;
       }
+    }
+  }
+  .qr_box{
+    width: 220px;
+    height: 450px;
+    background: white;
+    position: absolute;
+    right:0px;
+    top:20px;
+    box-shadow: 0px 0px 20px #999;
+    text-align: center;
+    box-sizing: border-box;
+    padding-top:20px;
+    .phone{
+      width: 60%;
+      height: 55%;
+    }
+    .qr{
+      width: 60%;
+      margin-top: 20px;
     }
   }
 }

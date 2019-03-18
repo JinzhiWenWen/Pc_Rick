@@ -13,7 +13,7 @@ import Axios from 'axios'
 // Axios.defaults.baseURL = 'http://rightservicetech.com:8080/'
 Axios.defaults.baseURL = 'http://hexsoft.top:8080'
 // Vue.prototype.url="http://rightservicetech.com:8080/"
-Vue.prototype.url="http://hexsoft.top:8080"
+Vue.prototype.url="http://hexsoft.top:8080/"
 Vue.prototype.$ajax = Axios
 Vue.prototype.dataURL = function (file,title,id) {
   id = (id === undefined)?'':id;
@@ -126,7 +126,7 @@ const router= new Router({
         {
           name:'PersonCard',//身份认证
           path:'/mine/personCard',
-          component:resolve=>require(['@/components/mine/person_card'],resolve)
+          component:resolve=>require(['@/components/mine/person_cardSec'],resolve)
         },
         {
           name:'PersonSkill',//技能认证

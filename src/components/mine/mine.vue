@@ -12,17 +12,17 @@
          tag="li" :class="{turnChose:mine==1}"
          @click.native="mine=1;personTitle='个人资料'"
          >个人资料</router-link>
-        <router-link to="/mine/changeMes"
+        <!-- <router-link to="/mine/changeMes"
         tag="li" :class="{turnChose:mine==2}"
         @click.native="mine=2;personTitle='资料编辑'"
-        >资料编辑</router-link>
+        >资料编辑</router-link> -->
         <router-link to="/mine/personCard"
         tag="li" :class="{turnChose:mine==3}"
         @click.native="mine=3;personTitle='身份认证'"
         >身份认证</router-link>
         <router-link to="/mine/personSkill"
         tag="li" :class="{turnChose:mine==4}"
-        @click.native="mine=4;personTitle='技能提交'"
+        @click.native="mine=4;personTitle='技能评估'"
          >技能评估</router-link>
         <router-link to="/mine/personCation"
         tag="li" :class="{turnChose:mine==5}"
@@ -30,8 +30,8 @@
         >工程师资质申请</router-link>
       </ul>
     </div>
+    <p class="person_url">个人中心>{{personTitle}}</p>
     <div class="mine_con">
-      <p>个人中心>{{personTitle}}</p>
       <router-view></router-view>
     </div>
   </div>
@@ -63,12 +63,13 @@ export default {
 .mine_wapper{
   width: 70%;
   margin:0 auto;
-  height: 100vh;
+  height: 100%;
   display: flex;
   padding-top:15px;
+  position: relative;
   .mine_table{
     width: 20%;
-    height: 100%;
+    height: 90vh;
     .user_pic{
       width: 100%;
       height: 180px;
@@ -117,21 +118,22 @@ export default {
       }
     }
   }
+  .person_url{
+    width: 80%;
+    font-size: 22px;
+    height: 50px;
+    line-height: 50px;
+    box-sizing: border-box;
+    border-bottom: 3px solid #eb7a1d;
+    position: absolute;
+    top:15px;
+    left:21%;
+  }
   .mine_con{
     width: 80%;
-    // height: 100%;
-    overflow-x:hidden;
-    box-sizing: border-box;
+    height: 100vh;
     padding-left: 22px;
-    p{
-      width: 100%;
-      font-size: 18px;
-      height: 50px;
-      line-height: 50px;
-      box-sizing: border-box;
-      border-bottom: 2px solid #ccc;
-      margin-top: 20px;
-    }
+    margin-top: 55px;
   }
   .mine_con::-webkit-scrollbar {
         display: none;
