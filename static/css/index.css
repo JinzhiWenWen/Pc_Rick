@@ -1,3 +1,6 @@
 .swiper-pagination-bullet-active{
 		background: #e86521!important;
 }
+.el-loading-spinner i{
+	margin-top:12px!important;
+}

@@ -161,7 +161,8 @@ import {mapMutations} from 'vuex'
                   _vm.turnEng=false;
                   _vm.engText='注册';
                   if(res.data.code==0){
-                    _vm.userMes_fn(res.data.data)
+                    _vm.userMes_fn(res.data.data);
+                    window.sessionStorage.setItem('user',JSON.stringify(res.data.data))
                     _vm.$notify({
                       title: '提示',
                       message: '注册成功，系统将默认为您登录',

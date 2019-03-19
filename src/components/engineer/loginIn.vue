@@ -89,6 +89,7 @@ export default {
           _vm.isTurn=false;
           if(res.data.code==0){
             _vm.userMes_fn(res.data.data);
+            window.sessionStorage.setItem('user',JSON.stringify(res.data.data))
             _vm.$notify({
               title: '提示',
               message: '登录成功',

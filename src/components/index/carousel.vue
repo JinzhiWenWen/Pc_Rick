@@ -28,11 +28,11 @@
         },
         mounted(){
           new Swiper('.swiper-container',{
-            autoplay: true,//可选选项，自动滑动
-            pagination: {
-              el: '.swiper-pagination',
-              clickable: true
-            },
+            autoplay: {
+              delay:2000,//1秒切换一次
+              stopOnLastSlide: false,
+              disableOnInteraction: false,
+            },//可选选项，自动滑动
             navigation: {
               nextEl: '.swiper-button-next',
               prevEl: '.swiper-button-prev',

@@ -47,10 +47,11 @@ export default {
       cardBefore:[],//回显列表
       isHasPic:true,//当前图片数量判断
       isHasService:false,//是否有以上穿认证图片
+      userMes:{}
     }
   },
   computed:{
-    ...mapState(['userMes']),
+    // ...mapState(['userMes']),
     picLength(){
       return this.cardFile.length+this.cardBefore.length
     }
@@ -65,6 +66,9 @@ export default {
     }
   },
   mounted(){
+    if(window.sessionStorage.getItem('user')){
+      this.userMes=JSON.parse(window.sessionStorage.getItem('user'))
+    }
     if(this.userMes.engineerVO){
       if(this.userMes.engineerVO.identityFiles.length>=1){
         this.cardBefore=this.userMes.engineerVO.identityFiles;

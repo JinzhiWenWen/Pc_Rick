@@ -144,6 +144,10 @@ const router= new Router({
   ]
 });
 router.beforeEach((to,from,next)=>{
+  if(window.sessionStorage.getItem('user')){
+    let U=JSON.parse(window.sessionStorage.getItem('user'));
+    // console.log(this.$store.commit())
+  }
   //启用加载进度条
   NProgress.start();
   next();

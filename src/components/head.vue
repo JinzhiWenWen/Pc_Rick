@@ -64,15 +64,19 @@
         doll:'/static/images/right_doll.png',
         isLogin:true,//是否登录
         hasLogin:false,//已登录
+        userMes:{}
       }
     },
     components:{
       Mas
     },
     computed:{
-      ...mapState(['userMes'])
+      // ...mapState(['userMes'])
     },
     mounted(){
+      if(window.sessionStorage.getItem('user')){
+        this.userMes=JSON.parse(window.sessionStorage.getItem('user'));
+      }
       var that = this;
       bus.$on("clickChannel",function (activeArr) {
         that.activeArr = activeArr;
@@ -100,9 +104,10 @@
       },
       loginOut(){//注销登录
         this.userMes_fn('');
+        window.sessionStorage.clear('user')
         this.isLogin=true;
         this.hasLogin=false;
-        this.reload();
+        this.$router.push('/')
       }
     }
   }
