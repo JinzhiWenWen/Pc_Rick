@@ -19,16 +19,18 @@
           <li>{{userName}}</li>
           <li>
             {{userEmail}}
-            <el-input type="text" v-model="newEmail" placeholder="请输入您的邮箱" style="width:40%;" v-show="writeEmail"></el-input>
-            <img src="../../../static/images/editor_icon.png" alt="" @click="writeEmail=!writeEmail">
+            <el-input type="text" v-model="newEmail" @blur="trunEmail()" placeholder="请输入您的邮箱" style="width:40%;" v-show="writeEmail"></el-input>
+            <img src="../../../static/images/editor_icon.png" alt="" @click="addEmail()">
+            <span style="color:red;" v-show="isEmail">*{{emailError}}</span>
           </li>
           <li>{{userPhone}}
             <el-input type="number" v-model="newPhone" placeholder="请输入您的手机号" style="width:40%;" v-show="writePhone"></el-input>
             <!-- <img src="../../../static/images/editor_icon.png" alt="" @click="writePhone=!writePhone"> -->
           </li>
           <li>{{workYear}}&nbsp;&nbsp;年
-            <el-input type="number" v-model="newYear" placeholder="请输入您的工作年限" style="width:40%;" v-show="writeYear"></el-input>
-            <img src="../../../static/images/editor_icon.png" alt="" @click="writeYear=!writeYear">
+            <el-input type="number" v-model="newYear" @blur="turnYear()" placeholder="请输入您的工作年限" style="width:40%;" v-show="writeYear"></el-input>
+            <img src="../../../static/images/editor_icon.png" alt="" @click="writeYear=!writeYear;isYear=false;Mes=1;turnMes=false;">
+            <span style="color:red;" v-show="isYear">*请输入您的工作年限</span>
           </li>
           <li>
             <span>{{choseTurn}}</span>
@@ -50,7 +52,7 @@
       </div>
     </div>
     <p class="saveMes" v-show="showUpBtn">
-      <button type="button" name="button" @click="saveMes()">保存</button>
+      <button type="button" name="button" @click="saveMes()" :disabled="turnMes" :class="{isSave:Mes==2}">保存</button>
     </p>
     <div class="locaBox" ref="locaBox" v-show="showLocaBox">
       <input type="text" name="" value="" v-model="choseTurn">
@@ -100,10 +102,16 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapState,mapMutations} from 'vuex'
 export default {
+  inject:['reload'],
   data(){
     return{
+      isYear:false,
+      emailError:null,//报错文本
+      isEmail:false,//报错
+      Mes:0,//禁用按钮样式
+      turnMes:false,//是否禁用按钮
       Ident:'派大星',//用户已认证身份
       place:'北京',//用户已选办公区域
       userMes:{},
@@ -209,6 +217,7 @@ export default {
     }
   },
   methods:{
+    ...mapMutations(['userMes_fn']),
     //选择地址
     chosePlace(){
       this.showlocaMask=true;
@@ -247,10 +256,14 @@ export default {
             })
           })
         }else{
-          _vm.$Toast(res.data.msg)
+          this.$alert(res.data.msg, '提示', {
+             confirmButtonText: '确定',
+           });
         }
       }).catch((err)=>{
-        _vm.$Toast('未知错误')
+        this.$alert('未知错误', '提示', {
+           confirmButtonText: '确定',
+         });
         console.log(err)
       })
     },
@@ -453,21 +466,81 @@ export default {
         formData.append('placeIds',_vm.cityID[i]);
       }
       _vm.$ajax.post(_vm.url+'/mobile/editEngineer',formData).then((res)=>{
-        console.log(res)
+        _vm.showUpBtn=false;
         if(res.data.code==0){
+          _vm.writeEmail=false;
+          _vm.writeYear=false;
+          _vm.writePhone=false;
+          window.sessionStorage.setItem('user',JSON.stringify(res.data.data));
+          _vm.userMes=JSON.parse(window.sessionStorage.getItem('user'));
+          _vm.reload();
           _vm.userMes_fn(res.data.data);
+          this.$alert('保存成功', '提示', {
+             confirmButtonText: '确定',
+           });
         }else{
-          alert(1)
+          this.$alert(res.data.msg, '提示', {
+             confirmButtonText: '确定',
+           });
         }
       }).catch((err)=>{
         console.log(err)
       })
-    }
+    },
+    //更改邮箱
+    addEmail(){
+      this.writeEmail=!this.writeEmail;
+      this.isEmail=false;
+      this.Mes=1;
+      this.turnMes=false;
+    },
+    //验证邮箱格式
+    trunEmail(){
+      if(this.newEmail==''){
+        this.isEmail=true;
+        this.emailError='请输入您的邮箱';
+        this.Mes=2;
+        this.turnMes=true;
+      }else if(!(/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/.test(this.newEmail))){
+        this.isEmail=true;
+        this.emailError='请输入正确的邮箱';
+        this.Mes=2;
+        this.turnMes=true;
+      }else if(this.newYear==''){
+        this.Mes=2;
+        this.turnMes=true;
+      }else{
+        this.isEmail=false;
+        this.Mes=1;
+        this.turnMes=false;
+      }
+    },
+    //验证工作年限
+    turnYear(){
+      if(this.newYear==''){
+        this.isYear=true;
+        this.Mes=2;
+        this.turnMes=true;
+      }else if(this.newEmail==''){
+        this.Mes=2;
+        this.turnMes=true;
+      }else if(!(/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/.test(this.newEmail))){
+        this.Mes=2;
+        this.turnMes=true;
+      }else{
+        this.isYear=false;
+        this.Mes=1;
+        this.turnMes=false;
+      }
+    },
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.isSave{
+  background:rgba(235,122,29,.5)!important;
+}
 .person_mes{
   width: 100%;
   height: 100%;
@@ -507,8 +580,26 @@ export default {
           width: 35px;
           height: 35px;
           cursor:pointer;
-          right:53%;
+          right:50%;
           top:13px;
+        }
+      }
+      li:nth-child(2){
+        position: relative;
+        span{
+          font-size: 14px;
+          position: absolute;
+          left:10px;
+          bottom:-30px;
+        }
+      }
+      li:nth-child(4){
+        position: relative;
+        span{
+          font-size: 14px;
+          position: absolute;
+          left:10px;
+          bottom:-30px;
         }
       }
     }

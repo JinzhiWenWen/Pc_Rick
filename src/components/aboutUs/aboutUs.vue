@@ -24,7 +24,7 @@
           <p class="subhead">公司使命</p>
           <p class="description">为员工、股东和社会创造最大价值，为客户提供最佳服务</p>
           <p class="subhead">公司愿景</p>
-          <p class="description">成为卓越的CT服务提供商</p>
+          <p class="description">成为卓越的ICT服务提供商</p>
           <p class="subhead">企业核心价值观</p>
           <p class="description">以客户为中心，以执行力为本</p>
         </div>

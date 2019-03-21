@@ -126,7 +126,7 @@ export default {
   width: 100%;
   height: 650px;
   min-height: 600px;
-  background: url('../../../static/images/being.png');
+  background: url('../../../static/images/login_bg.png');
   background-size: 100% 100%;
   box-sizing: border-box;
   position: relative;

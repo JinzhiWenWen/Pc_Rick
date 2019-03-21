@@ -2,7 +2,12 @@
   <div id="app"  v-if="isLoad">
     <head-nav></head-nav>
     <div class="app-body">
-      <router-view></router-view>
+      <div class="view_box">
+          <keep-alive>
+            <router-view v-if="$route.meta.keep"></router-view>
+          </keep-alive>
+        <router-view v-if="!$route.meta.keep"></router-view>
+      </div>
     </div>
     <footer-nav></footer-nav>
   </div>

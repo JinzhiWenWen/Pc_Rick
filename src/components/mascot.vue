@@ -22,7 +22,7 @@ export default {
 
 <style lang="scss" scoped>
 .header-doll{
-  width:110px;
+  width:95px;
   height:90px;
   position: fixed;
   bottom:160px;

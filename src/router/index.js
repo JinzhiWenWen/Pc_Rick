@@ -10,10 +10,10 @@ Vue.component('footerNav',footer)
 
 // 数据请求
 import Axios from 'axios'
-// Axios.defaults.baseURL = 'http://rightservicetech.com:8080/'
-Axios.defaults.baseURL = 'http://hexsoft.top:8080'
-// Vue.prototype.url="http://rightservicetech.com:8080/"
-Vue.prototype.url="http://hexsoft.top:8080/"
+Axios.defaults.baseURL = 'http://rightservicetech.com:8080'
+// Axios.defaults.baseURL = 'http://hexsoft.top:8080'
+Vue.prototype.url="http://rightservicetech.com:8080/"
+// Vue.prototype.url="http://hexsoft.top:8080/"
 Vue.prototype.$ajax = Axios
 Vue.prototype.dataURL = function (file,title,id) {
   id = (id === undefined)?'':id;
@@ -41,7 +41,10 @@ const router= new Router({
     {
       path: '/ ',
       name:'index',
-      component: Index
+      component: Index,
+      meta:{
+        keep:true
+      }
     },
     {
       name:'newsView',
@@ -144,9 +147,12 @@ const router= new Router({
   ]
 });
 router.beforeEach((to,from,next)=>{
-  if(window.sessionStorage.getItem('user')){
-    let U=JSON.parse(window.sessionStorage.getItem('user'));
-    // console.log(this.$store.commit())
+  //路由守卫
+  const Mine=['Mine','PersonMes','ChangeMes','PersonCard','PersonSkill'];
+  if(Mine.indexOf(to.name)>-1){
+    if(!window.sessionStorage.getItem('user')){
+      next('/engineer/loginIn')
+    }
   }
   //启用加载进度条
   NProgress.start();

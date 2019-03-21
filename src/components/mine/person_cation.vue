@@ -82,7 +82,7 @@ export default {
       this.comPlace();
       this.skillPic.push(this.userMes.engineerVO.certificateFiles[0]);
       this.skillPic.push(this.userMes.engineerVO.certificateFiles[1]);
-      if(this.userMes.engineerVO.identityFiles>=1){
+      if(this.userMes.engineerVO.identityFiles.length>=1){
         this.identPics=this.userMes.engineerVO.identityFiles
       }else{
         this.identPics=[];
@@ -152,6 +152,7 @@ export default {
           _vm.cation_text='提交认证';
           _vm.upCation=false;
           if(res.data.code==0){
+            window.sessionStorage.setItem('user',JSON.stringify(res.data.data))
             _vm.userMes_fn(res.data.data);
             if(res.data.data.engineerVO.state==0){
               _vm.$alert(res.data.data.engineerVO.identifyMsg, '提示', {
@@ -235,6 +236,8 @@ export default {
     height: 100%;
     ul{
       width: 100%;
+      height: 682px;
+      position: relative;
       li{
         float: none;
         line-height: 60px;
@@ -268,7 +271,7 @@ export default {
       }
       li:nth-child(8){
         position: absolute;
-        bottom:27.5%;
+        bottom:0;
       }
     }
   }

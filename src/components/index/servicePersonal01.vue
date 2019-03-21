@@ -54,7 +54,11 @@
         },
         mounted(){
           new Swiper('.swiper-container1', {
-            autoplay: true,
+            autoplay: {
+              delay:2000,//2秒切换一次
+              stopOnLastSlide: false,
+              disableOnInteraction: false,
+            },
             slidesPerView: 4,
             spaceBetween: 30,
             pagination: {

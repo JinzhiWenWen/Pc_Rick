@@ -36,9 +36,9 @@
       </div>
       <p class="header_oper" v-show="isLogin">
         <span class="oper_box">
-          <router-link :to="{name:'engineer'}" tag="span">注册</router-link>
+          <router-link :to="{name:'engineer'}" tag="span" @click.native="changeTab(6)">注册</router-link>
           <span>|</span>
-          <router-link :to="{name:'LoginIn'}" tag="span">登录</router-link>
+          <router-link :to="{name:'LoginIn'}" tag="span" @click.native="changeTab(6)">登录</router-link>
         </span>
       </p>
       <p v-show="hasLogin">
@@ -93,7 +93,8 @@
     methods:{
       ...mapMutations(['userMes_fn']),
       comeMine(){//跳转个人中心
-        this.$router.push('/mine')
+        this.$router.push('/mine');
+        this.changeTab(6)
       },
       changeTab(num){
         for(var i=0;i<this.activeArr.length;i++){

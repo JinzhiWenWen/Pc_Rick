@@ -31,7 +31,7 @@
       <span style="color:red;">*</span>请上传清晰技能证书正反面照片，并且为 .jpg或.png格式（图片将被等比压缩为260*180大小，长度相近的图片效果更佳，最多可以上传5张证书图片）
     </p>
     <p class="save_btn">
-      <button type="button" name="button" @click="upFile()">上传</button>
+      <button type="button" name="button" @click="upFile()" v-show="skillBtn">上传</button>
     </p>
   </div>
 </template>
@@ -39,6 +39,7 @@
 <script>
 import {mapState,mapMutations} from 'vuex'
 export default {
+  inject:['reload'],
   data(){
     return{
       cardShow:[],//上传暂显列表
@@ -47,7 +48,8 @@ export default {
       cardBefore:[],//回显列表
       isHasPic:true,//当前图片数量判断
       isHasService:false,//是否有以上穿认证图片
-      userMes:{}
+      userMes:{},
+      skillBtn:true
     }
   },
   computed:{
@@ -59,9 +61,11 @@ export default {
   watch:{
     picLength(val,oldVal){
       if(val>=5){
-        this.isHasPic=false
+        this.isHasPic=false;
+        this.skillBtn=false;
       }else{
-        this.isHasPic=true
+        this.isHasPic=true;
+        this.skillBtn=true;
       }
     }
   },
@@ -78,9 +82,11 @@ export default {
       }
     };
     if(this.picLength>=5){
-      this.isHasPic=false
+      this.isHasPic=false;
+      this.skillBtn=false;
     }else{
-      this.isHasPic=true
+      this.isHasPic=true;
+      this.skillBtn=true;
     }
   },
   methods:{
@@ -112,7 +118,9 @@ export default {
             this.$alert('删除成功', '提示', {
                confirmButtonText: '确定',
              });
+            window.sessionStorage.setItem('user',JSON.stringify(res.data.data))
             _vm.userMes_fn(res.data.data);
+            _vm.reload()
             _vm.cardBefore=res.data.data.engineerVO.certificateFiles;
           }else{
             this.$alert('当前账户异常，请稍后再试', '提示', {
@@ -203,15 +211,15 @@ export default {
       flex-wrap: wrap;
       margin-left: 20px;
       li{
-        width: 45%;
-        height: 230px;
+        width: 40%;
+        height: 200px;
         background: red;
         float: none;
         margin-top: 20px;
         border-radius:12px;
         box-shadow: 0px 5px 20px #999;
         position: relative;
-        background: url('../../../static/images/card_bg.png');
+        background: url('../../../static/images/skill_bg.jpg');
         background-size:100% 100%;
         input{
           width: 100%;

@@ -1,17 +1,17 @@
 <!-- 个人中心页 -->
 <template lang="html">
-  <div class="mine_wapper">
+  <div class="mine_wapper w1420">
     <!-- <h1>个人中心</h1> -->
     <div class="mine_table">
       <p class="user_pic">
-        <img src="../../../static/images/UserPic.png" alt="">
+        <img src="../../../static/images/person_img.jpeg" alt="">
         <button type="button" name="button" @click="upPic()">编辑头像</button>
       </p>
       <ul>
         <router-link to="/mine/personMes"
          tag="li" :class="{turnChose:mine==1}"
          @click.native="mine=1;personTitle='个人资料'"
-         >个人资料</router-link>
+         ><i class="iconfont icon-renzheng1"></i>个人资料</router-link>
         <!-- <router-link to="/mine/changeMes"
         tag="li" :class="{turnChose:mine==2}"
         @click.native="mine=2;personTitle='资料编辑'"
@@ -19,15 +19,15 @@
         <router-link to="/mine/personCard"
         tag="li" :class="{turnChose:mine==3}"
         @click.native="mine=3;personTitle='身份认证'"
-        >身份认证</router-link>
+        ><i class="iconfont icon-renzheng"></i>身份认证</router-link>
         <router-link to="/mine/personSkill"
         tag="li" :class="{turnChose:mine==4}"
         @click.native="mine=4;personTitle='技能评估'"
-         >技能评估</router-link>
+         ><i class="iconfont icon-approve"></i>技能评估</router-link>
         <router-link to="/mine/personCation"
         tag="li" :class="{turnChose:mine==5}"
         @click.native="mine=5;personTitle='工程师资质申请'"
-        >工程师资质申请</router-link>
+        ><i class="iconfont icon-zizhizhengshu"></i>工程师资质申请</router-link>
       </ul>
     </div>
     <p class="person_url">个人中心>{{personTitle}}</p>
@@ -61,7 +61,6 @@ export default {
   border-bottom:2px solid #eb7a1d;
 }
 .mine_wapper{
-  width: 70%;
   margin:0 auto;
   height: 100%;
   display: flex;
@@ -99,6 +98,7 @@ export default {
       }
     }
     ul{
+      width: 100%;
       height: 75%;
       box-shadow: 0px 0px 10px #999;
       li{
@@ -110,6 +110,15 @@ export default {
         font-size: 18px;
         box-sizing: border-box;
         cursor:pointer;
+        position: relative;
+        i{
+          font-size: 22px;
+          position: absolute;
+          left:25%;
+        }
+        .icon-zizhizhengshu{
+          left:16%;
+        }
       }
       li:hover{
         color:#eb7a1d;
@@ -127,7 +136,7 @@ export default {
     border-bottom: 3px solid #eb7a1d;
     position: absolute;
     top:15px;
-    left:21%;
+    left:300px;
   }
   .mine_con{
     width: 80%;
