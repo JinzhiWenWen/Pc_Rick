@@ -1,6 +1,6 @@
 <!-- 用户资料页 -->
 <template lang="html">
-  <div class="person_mes">
+  <div class="person_mes" ref="person_mes">
     <div class="" style="width:100%;display:flex;">
       <div class="mes_title">
         <ul>
@@ -33,7 +33,8 @@
             <span style="color:red;" v-show="isYear">*请输入您的工作年限</span>
           </li>
           <li>
-            <span>{{choseTurn}}</span>
+            <span v-if="didPlace">{{choseTurn}}</span>
+            <span v-else>未选择</span>
             <img src="../../../static/images/editor_icon.png" alt="" @click="chosePlace()">
           </li>
           <li>
@@ -89,7 +90,7 @@
         <button type="button" name="button" @click="savePlace()">保存</button>
       </p>
     </div>
-    <div class="locaMask" @touchmove.prevent v-show="showlocaMask" ref="locaMask"  @click="cancelChose()">
+    <div class="locaMask" v-show="showlocaMask" ref="locaMask"  @click="cancelChose()">
 
     </div>
     <div class="qr_box">
@@ -107,6 +108,7 @@ export default {
   inject:['reload'],
   data(){
     return{
+      didPlace:false,
       isYear:false,
       emailError:null,//报错文本
       isEmail:false,//报错
@@ -128,7 +130,7 @@ export default {
       writeYear:false,//工作年限输入框
       newEmail:null,//编辑邮箱
       newPhone:null,//编辑手机号
-      newYear:null,//编辑工作年限
+      newYear:0,//编辑工作年限
       showUpBtn:false,
       //////////////////////////////////////////
       showLocaBox:false,//显示地址选择盒子
@@ -142,7 +144,7 @@ export default {
       placeArr:[],
       delArr:[],
       choseText:'-',
-      choseTurn:'-',
+      choseTurn:null,
       choseVal:null,//当前选择的省份
       isAll:[],//是否全选
       cityID:[],//城市ID
@@ -154,6 +156,13 @@ export default {
     }
   },
   watch:{
+    choseTurn(val,oldVal){
+      if(val!==null){
+        this.didPlace=true;
+      }else{
+        this.didPlace=false;
+      }
+    },
     writeEmail(val,oldVal){
       if(val){
         this.showUpBtn=true;
@@ -236,6 +245,25 @@ export default {
           _vm.cityList=res.data.data.placeList;
           _vm.delArr=_vm.cityList[0].usingChildList;
           _vm.choseVal=_vm.cityList[0].name;
+          let b=[];//存放是全选状态
+          _vm.delArr.forEach((c)=>{
+            _vm.a.push(c.id);
+            b.push(c.selected)
+          });
+          if(b.indexOf(false)>=0){
+            console.log(1)
+          }else{
+            _vm.isAll.push(_vm.choseVal);
+            _vm.isAll.forEach((x)=>{
+              if(_vm.choseVal===x){
+                _vm.$refs.allchose.style.color='#eb7a1d';
+                _vm.$refs.allicon.style.display='block';
+              }else{
+                _vm.$refs.allchose.style.color='black';
+                _vm.$refs.allicon.style.display='none';
+              }
+            });
+          }
           _vm.cityList.forEach((cityL)=>{
             cityL.usingChildList.forEach((x)=>{
               if(x.selected){
@@ -437,7 +465,6 @@ export default {
     },
     //计算用户工作区域
     comPlace(){
-      console.log(this.userMes.engineerVO);
       let placeList=this.userMes.engineerVO.childPlaces;
       let placeName=[];
       placeList.forEach((e)=>{
@@ -506,7 +533,7 @@ export default {
         this.emailError='请输入正确的邮箱';
         this.Mes=2;
         this.turnMes=true;
-      }else if(this.newYear==''){
+      }else if(this.newYear==null){
         this.Mes=2;
         this.turnMes=true;
       }else{
@@ -521,10 +548,7 @@ export default {
         this.isYear=true;
         this.Mes=2;
         this.turnMes=true;
-      }else if(this.newEmail==''){
-        this.Mes=2;
-        this.turnMes=true;
-      }else if(!(/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/.test(this.newEmail))){
+      }else if(this.newEmail==null){
         this.Mes=2;
         this.turnMes=true;
       }else{
@@ -631,7 +655,7 @@ export default {
     margin-top: -200px;
     margin-left: -300px;
     transition: 1s all;
-    z-index: 100;
+    z-index: 2000;
     border-radius:10px;
     opacity: 0;
     input{
@@ -738,7 +762,7 @@ export default {
     background: rgba(0,0,0,.5);
     top:0;
     left:0;
-    z-index: 10;
+    z-index: 1000;
     transition: 1s all;
   }
   .qr_box{

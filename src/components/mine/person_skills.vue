@@ -119,8 +119,8 @@ export default {
                confirmButtonText: '确定',
              });
             window.sessionStorage.setItem('user',JSON.stringify(res.data.data))
+            _vm.userMes=JSON.parse(window.sessionStorage.getItem('user'));
             _vm.userMes_fn(res.data.data);
-            _vm.reload()
             _vm.cardBefore=res.data.data.engineerVO.certificateFiles;
           }else{
             this.$alert('当前账户异常，请稍后再试', '提示', {
@@ -175,8 +175,11 @@ export default {
           this.$alert('上传成功', '提示', {
              confirmButtonText: '确定',
            });
-          _vm.userMes_fn(res.data.data);
+           window.sessionStorage.setItem('user',JSON.stringify(res.data.data))
+           _vm.userMes=JSON.parse(window.sessionStorage.getItem('user'));
+           _vm.userMes_fn(res.data.data);
           _vm.cardBefore=res.data.data.engineerVO.certificateFiles;
+          _vm.isHasService=true;
           _vm.cardShow=[];
           _vm.cardFile=[];
         }else{
@@ -219,7 +222,7 @@ export default {
         border-radius:12px;
         box-shadow: 0px 5px 20px #999;
         position: relative;
-        background: url('../../../static/images/skill_bg.jpg');
+        background: url('../../../static/images/skill_bg.png');
         background-size:100% 100%;
         input{
           width: 100%;

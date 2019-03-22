@@ -8,25 +8,25 @@
         <button type="button" name="button" @click="upPic()">编辑头像</button>
       </p>
       <ul>
-        <router-link to="/mine/personMes"
+        <router-link :to="{path:'/mine/personMes',query:{Mine:1}}"
          tag="li" :class="{turnChose:mine==1}"
-         @click.native="mine=1;personTitle='个人资料'"
+         @click.native="personTitle='个人资料'"
          ><i class="iconfont icon-renzheng1"></i>个人资料</router-link>
         <!-- <router-link to="/mine/changeMes"
         tag="li" :class="{turnChose:mine==2}"
         @click.native="mine=2;personTitle='资料编辑'"
         >资料编辑</router-link> -->
-        <router-link to="/mine/personCard"
+        <router-link :to="{path:'/mine/personCard',query:{Mine:3}}"
         tag="li" :class="{turnChose:mine==3}"
-        @click.native="mine=3;personTitle='身份认证'"
+        @click.native="personTitle='身份认证'"
         ><i class="iconfont icon-renzheng"></i>身份认证</router-link>
-        <router-link to="/mine/personSkill"
+        <router-link :to="{path:'/mine/personSkill',query:{Mine:4}}"
         tag="li" :class="{turnChose:mine==4}"
-        @click.native="mine=4;personTitle='技能评估'"
+        @click.native="personTitle='技能评估'"
          ><i class="iconfont icon-approve"></i>技能评估</router-link>
-        <router-link to="/mine/personCation"
+        <router-link :to="{path:'/mine/personCation',query:{Mine:5}}"
         tag="li" :class="{turnChose:mine==5}"
-        @click.native="mine=5;personTitle='工程师资质申请'"
+        @click.native="personTitle='工程师资质申请'"
         ><i class="iconfont icon-zizhizhengshu"></i>工程师资质申请</router-link>
       </ul>
     </div>
@@ -43,6 +43,20 @@ export default {
     return{
       mine:1,//样式切换
       personTitle:'个人资料'
+    }
+  },
+  computed:{
+    mineSel(){
+      return this.$route.query.Mine
+    }
+  },
+  watch:{
+    mineSel(val,oldVal){
+      if(val){
+        this.mine=val;
+      }else{
+        this.mine=1;
+      }
     }
   },
   methods:{

@@ -4,15 +4,15 @@
       <p>
         <router-link :to="{name:'aboutUs'}" @click.native="changeTab(1)">关于我们</router-link>
         <span>|</span>
-        <a href="http://www.rightservicetech.com:8080/index" target="_blank">犀牛小哥平台</a>
+        <router-link :to="{name:'servicePlatformView'}" @click.native="changeTab(2)">犀牛小哥平台</router-link>
         <span>|</span>
-        <a href="#" @click.native="changeTab(2)">产品与解决方案</a>
+        <router-link :to="{name:'PlanPro'}" @click.native="changeTab(3)">产品与解决方案</router-link>
         <span>|</span>
-        <router-link :to="{name:'successfulCaseView'}" @click.native="changeTab(3)">成功案例</router-link>
+        <router-link :to="{name:'successfulCaseView'}" @click.native="changeTab(4)">成功案例</router-link>
         <span>|</span>
-        <router-link :to="{name:'newsView'}" @click.native="changeTab(4)">新闻中心</router-link>
+        <router-link :to="{name:'newsView'}" @click.native="changeTab(5)">新闻中心</router-link>
         <span>|</span>
-        <router-link :to="{name:'contactUs'}" @click.native="changeTab(5)">联系我们</router-link>
+        <a href="#">联系我们</a>
       </p>
       <p>
         客服热线：010-62115806&nbsp;&nbsp;客服QQ：3324729049&nbsp;&nbsp;客服邮箱：service@rightservicetech.com&nbsp;&nbsp;

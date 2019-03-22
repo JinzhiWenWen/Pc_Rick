@@ -1,5 +1,5 @@
 <template>
-  <header class="header-card w100">
+  <header class="header-card">
     <div class="header-box w1420">
       <div class="ht-nav w100 clearfix">
         <!-- logo -->
@@ -117,7 +117,10 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
   .header-card{
+    width: 100%;
+    max-width:100%;
     position: fixed;
+    left:0;
     top: 0;
     z-index: 999;
     background-color: #fff;

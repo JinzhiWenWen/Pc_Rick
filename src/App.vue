@@ -1,5 +1,5 @@
 <template>
-  <div id="app"  v-if="isLoad">
+  <div id="app" class="appT"  v-if="isLoad">
     <head-nav></head-nav>
     <div class="app-body">
       <div class="view_box">
@@ -43,7 +43,11 @@
     margin: 0 auto;
     min-width: 1420px;
     font-family: "MyriadPro Regular";
+    overflow-x: hidden;
   }
+  .appT::-webkit-scrollbar {
+      display: none!important;
+    }
   .app-body{
     margin-top: 111px;
   }

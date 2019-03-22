@@ -62,10 +62,10 @@ export default {
     picLength(val,oldVal){
       if(val>=2){
         this.isHasPic=false;
-        this.cardBtn=false;
+        this.cardBtn=true;
       }else{
         this.isHasPic=true;
-        this.cardBtn=true;
+        this.cardBtn=false;
       }
     }
   },
@@ -120,7 +120,7 @@ export default {
              });
             _vm.userMes_fn(res.data.data);
             window.sessionStorage.setItem('user',JSON.stringify(res.data.data))
-            _vm.reload();
+            _vm.userMes=JSON.parse(window.sessionStorage.getItem('user'));
             _vm.cardBefore=res.data.data.engineerVO.identityFiles;
           }else{
             this.$alert('当前账户异常，请稍后再试', '提示', {
@@ -174,6 +174,9 @@ export default {
            });
           _vm.userMes_fn(res.data.data);
           _vm.cardBefore=res.data.data.engineerVO.identityFiles;
+          window.sessionStorage.setItem('user',JSON.stringify(res.data.data));
+          _vm.userMes=JSON.parse(window.sessionStorage.getItem('user'));
+          _vm.isHasService=true;
           _vm.cardShow=[];
           _vm.cardFile=[];
         }else{
@@ -216,7 +219,7 @@ export default {
         border-radius:12px;
         box-shadow: 0px 5px 20px #999;
         position: relative;
-        background: url('../../../static/images/card_bg.png');
+        background: url('../../../static/images/card_bg.jpg');
         background-size:100% 100%;
         input{
           width: 100%;

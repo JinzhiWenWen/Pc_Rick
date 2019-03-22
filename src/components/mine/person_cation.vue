@@ -25,10 +25,12 @@
             <span v-else>未选择工作区域</span>
           </li>
           <li>
-            <img v-for="cardPic in identPics" v-if="identPics.length>=1" :src="url+cardPic.fileName" alt="">
+            <img :src="url+identPics[0]" alt="">
+            <img :src="url+identPics[1]" alt="">
           </li>
           <li>
-            <img v-for="skillPic in skillPic" v-if="identPics.length>=1"  :src="url+skillPic.fileName" alt="">
+            <img :src="url+skillPic[0]" alt="">
+            <img :src="url+skillPic[1]" alt="">
           </li>
           <li>
             {{workYear}}&nbsp;年
@@ -65,7 +67,7 @@ export default {
       cation_text:'提交认证',
       userMes:{},
       userName:null,
-      userEmail:null,
+      userEmail:'-',
       userPhone:null,
       workYear:null,
       hasPlace:false,
@@ -80,15 +82,26 @@ export default {
       this.userMes=JSON.parse(window.sessionStorage.getItem('user'));
       this.comIdent();
       this.comPlace();
-      this.skillPic.push(this.userMes.engineerVO.certificateFiles[0]);
-      this.skillPic.push(this.userMes.engineerVO.certificateFiles[1]);
+      if(this.userMes.engineerVO.certificateFiles.length>=1){
+        this.userMes.engineerVO.certificateFiles.forEach((t)=>{
+          this.skillPic.push(t.fileName)
+        })
+      }else{
+        this.skillPic=[]
+      }
       if(this.userMes.engineerVO.identityFiles.length>=1){
-        this.identPics=this.userMes.engineerVO.identityFiles
+        this.userMes.engineerVO.identityFiles.forEach((e)=>{
+          this.identPics.push(e.fileName)
+        })
       }else{
         this.identPics=[];
       }
       this.userName=this.userMes.engineerVO.name;
-      this.userEmail=this.userMes.email;
+      if(this.userMes.email==null){
+        this.userEmail='-';
+      }else{
+        this.userEmail=this.userMes.email;
+      }
       this.userPhone=this.userMes.engineerVO.phone;
       this.workYear=this.userMes.engineerVO.workYear;
       if(this.workYear==null){
@@ -126,6 +139,7 @@ export default {
          _vm.$router.push('/mine/personMes')
        }).catch(() => {
          // alert(2)
+         _vm.upCation=false;
        });
      }else if(userState.identifyState==1){
        _vm.$confirm('当前未进行身份认证，是否前往？', '提示', {
@@ -135,6 +149,7 @@ export default {
         _vm.$router.push('/mine/personCard')
       }).catch(() => {
         // alert(2)
+        _vm.upCation=false;
       });
     }else if(userState.identifyState==2){
         _vm.$confirm('当前未进行技能认证，是否前往？', '提示', {
@@ -144,6 +159,7 @@ export default {
           _vm.$router.push('/mine/personSkill')
          }).catch(() => {
            // alert(2)
+           _vm.upCation=false
          });
      }else if(userState.identifyState==3){
         let formData=new FormData();
@@ -153,7 +169,9 @@ export default {
           _vm.upCation=false;
           if(res.data.code==0){
             window.sessionStorage.setItem('user',JSON.stringify(res.data.data))
+            _vm.userMes=JSON.parse(window.sessionStorage.getItem('user'));
             _vm.userMes_fn(res.data.data);
+            _vm.upCation=false;
             if(res.data.data.engineerVO.state==0){
               _vm.$alert(res.data.data.engineerVO.identifyMsg, '提示', {
                 confirmButtonText: '确定'
@@ -168,11 +186,13 @@ export default {
               });
             }
           }else{
+            _vm.upCation=false;
             _vm.$alert(res.data.msg, '提示', {
               confirmButtonText: '确定'
             });
           }
         }).catch((err)=>{
+          _vm.upCation=false;
           _vm.$alert('未知错误', '提示', {
             confirmButtonText: '确定'
           });
@@ -191,7 +211,6 @@ export default {
     },
     //计算用户工作区域
     comPlace(){
-      console.log(this.userMes.engineerVO);
       let placeList=this.userMes.engineerVO.childPlaces;
       let placeName=[];
       placeList.forEach((e)=>{
@@ -250,10 +269,16 @@ export default {
         img{
           width: 240px;
           height: 120px;
+          min-width: 240px;
+          min-height: 120px;
           border-radius: 10px;
           border:2px solid #eb7a1d;
+          background: url('../../../static/images/card_bg.png');
+          background-size: 100% 100%;
         }
         img:nth-child(2){
+          background: url('../../../static/images/skill_bg2.png');
+          background-size: 100% 100%;
           margin-left: 20px;
         }
       }
@@ -262,8 +287,12 @@ export default {
         img{
           width: 240px;
           height: 120px;
+          min-width: 240px;
+          min-height: 120px;
           border-radius: 10px;
           border:2px solid #eb7a1d;
+          background: url('../../../static/images/skill_bg.jpg');
+          background-size: 100% 100%;
         }
         img:nth-child(2){
           margin-left: 20px;
