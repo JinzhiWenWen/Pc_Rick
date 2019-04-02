@@ -4,3 +4,21 @@
 .el-loading-spinner i{
 	margin-top:12px!important;
 }
+.el-menu-vertical-demo{
+	height: 100vh!important;
+}
+.el-menu-item{
+	width: 100%!important;
+	font-size: 16px;
+}
+.el-menu-item span{
+	display: inline-block;
+	width: 100%!important;
+	height: 100%!important;
+}
+.el-submenu__title{
+	font-size: 16px;
+}
+.el-submenu{
+	width: 100%!important;
+}

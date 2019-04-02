@@ -45,6 +45,7 @@
         欢迎您，<span style="color:#eb7a1d;cursor:pointer;" @click="comeMine()">{{userMes.nickname}}</span>(
         <span style="cursor:pointer;text-decoration:underline;color:#eb7a1d;" @click="loginOut()">退出</span>)
       </p>
+      <p class="admin" @click="admin">Admin</p>
       <!-- <img :src="doll" alt="" class="header-doll"> -->
       <Mas/>
     </div>
@@ -109,6 +110,9 @@
         this.isLogin=true;
         this.hasLogin=false;
         this.$router.push('/')
+      },
+      admin(){
+        this.$router.push('/admin')
       }
     }
   }
@@ -142,6 +146,14 @@
           cursor:pointer;
         }
       }
+    }
+    .admin{
+      color:#eb7a1d;
+      position: absolute;
+      right:300px;
+      top:30px;
+      cursor:pointer;
+      text-decoration:underline;
     }
   }
   .ht-nav{

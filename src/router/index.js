@@ -10,12 +10,12 @@ Vue.component('footerNav',footer)
 
 // 数据请求
 import Axios from 'axios'
-Axios.defaults.baseURL = 'http://rightservicetech.com:8080'
+// Axios.defaults.baseURL = 'http://rightservicetech.com:8080'
 // Axios.defaults.baseURL = 'http://10.0.0.31:8080'
-// Axios.defaults.baseURL = 'http://hexsoft.top:8080'
-Vue.prototype.url="http://rightservicetech.com:8080/"
+Axios.defaults.baseURL = 'http://hexsoft.top:8080'
+// Vue.prototype.url="http://rightservicetech.com:8080/"
 // Vue.prototype.url="http://10.0.0.31:8080/"
-// Vue.prototype.url="http://hexsoft.top:8080/"
+Vue.prototype.url="http://hexsoft.top:8080/"
 Vue.prototype.$ajax = Axios
 Vue.prototype.dataURL = function (file,title,id) {
   id = (id === undefined)?'':id;
@@ -142,15 +142,42 @@ const router= new Router({
           name:'PersonCation',//资质申请
           path:'/mine/personCation',
           component:resolve=>require(['@/components/mine/person_cation'],resolve)
-        }
+        },
       ],
       redirect:'/mine/personMes'
+    },
+    {
+      name:'Admin',//临时管理员
+      path:'/admin',
+      component:resolve=>require(['@/components/admin_tem'],resolve),
+      keep:true,
+      children:[
+        {
+          path:'/admin/wel',
+          name:'Wel',
+          component:resolve=>require(['@/components/admin_welcome'],resolve)
+        },
+        {
+          path:'/admin/order',
+          name:'Order',
+          component:resolve=>require(['@/components/admin_order'],resolve)
+        },
+        {
+          path:'/admin/role',
+          component:resolve=>require(['@/components/admin_role'],resolve)
+        },
+        {
+          path:'/admin/channel',
+          component:resolve=>require(['@/components/admin_channel'],resolve)
+        },
+      ],
+      redirect:'/admin/wel'
     }
   ]
 });
 router.beforeEach((to,from,next)=>{
   //路由守卫
-  const Mine=['Mine','PersonMes','ChangeMes','PersonCard','PersonSkill'];
+  const Mine=['Mine','PersonMes','ChangeMes','PersonCard','PersonSkill','Admin'];
   if(Mine.indexOf(to.name)>-1){
     if(!window.sessionStorage.getItem('user')){
       next('/engineer/loginIn')

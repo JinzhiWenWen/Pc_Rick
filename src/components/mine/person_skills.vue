@@ -145,20 +145,8 @@ export default {
       _this.cardFile.push(file);
       let reader=new FileReader();
       reader.readAsDataURL(file);
-      let img=new Image;
-      reader.onload=function(e){
-        var width=400,
-        quality=0.1,
-        canvas=document.createElement("canvas"),
-        drawer=canvas.getContext("2d");
-        img.src=this.result;
-        img.onload=()=>{
-          canvas.width=width;
-          canvas.height=width*(img.height/img.width);
-          drawer.drawImage(img,0,0,canvas.width,canvas.height);
-          img.src=canvas.toDataURL('image/png',quality);
-        };
-        _this.cardShow.push(img.src)
+      reader.onload=function(){
+        _this.cardShow.push(this.result)
       };
     },
     upFile(){//上传文件
