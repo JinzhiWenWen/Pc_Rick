@@ -1,15 +1,16 @@
 <template>
   <div id="app" class="appT"  v-if="isLoad">
-    <head-nav></head-nav>
-    <div class="app-body">
-      <div class="view_box">
-          <keep-alive>
-            <router-view v-if="$route.meta.keep"></router-view>
-          </keep-alive>
-        <router-view v-if="!$route.meta.keep"></router-view>
+      <div class="app-body">
+        <head-nav></head-nav>
+        <div class="view_box">
+            <keep-alive>
+              <router-view v-if="$route.meta.keep"></router-view>
+            </keep-alive>
+          <router-view v-if="!$route.meta.keep"></router-view>
+        </div>
+        <footer-nav></footer-nav>
       </div>
-    </div>
-    <footer-nav></footer-nav>
+    <!-- <router-view v-if="$route.meta.admin"></router-view> -->
   </div>
 </template>
 

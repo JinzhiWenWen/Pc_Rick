@@ -26,7 +26,7 @@ export default {
   height:90px;
   position: fixed;
   bottom:160px;
-  right:5%;
+  left:95%;
   background: url('../../static/images/right_doll.png');
   background-size: 100% 100%;
   cursor:pointer;

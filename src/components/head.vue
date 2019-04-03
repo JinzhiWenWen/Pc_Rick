@@ -1,55 +1,60 @@
 <template>
-  <header class="header-card">
-    <div class="header-box w1420">
-      <div class="ht-nav w100 clearfix">
-        <!-- logo -->
-        <div class="ht-logo f-l">
-          <img src="../../static/images/tab_logo_home_nor.png" width="334" height="51">
+  <div class="header-card">
+    <el-row>
+      <el-col :span="24">
+        <div class="header-box">
+          <div class="ht-nav clearfix">
+            <!-- logo -->
+            <div class="ht-logo f-l">
+              <img src="../../static/images/tab_logo_home_nor.png" width="334" height="51">
+            </div>
+            <!-- 首页导航 -->
+            <ul class="nav f-l clearfix">
+              <li>
+                <router-link :to="{name:'index'}" :class="{'active':activeArr[0]}" @click.native="changeTab(0)">
+                  首页
+                </router-link>
+              </li>
+              <li>
+                <router-link :to="{name:'aboutUs'}" :class="{'active':activeArr[1]}" @click.native="changeTab(1)">关于我们</router-link>
+              </li>
+              <li>
+                <router-link :to="{name:'servicePlatformView'}"  :class="{'active':activeArr[2]}" @click.native="changeTab(2)">犀牛小哥平台</router-link>
+                <!-- <a href="http://www.rightservicetech.com:8080/index" target="_blank">犀牛小哥平台</a> -->
+              </li>
+              <li>
+                <router-link :to="{name:'PlanPro'}" :class="{'active':activeArr[3]}" @click.native="changeTab(3)">产品与解决方案</router-link>
+              </li>
+              <li>
+                <router-link :to="{name:'successfulCaseView'}" :class="{'active':activeArr[4]}" @click.native="changeTab(4)">成功案例</router-link>
+              </li>
+              <li>
+                <router-link :to="{name:'newsView'}" :class="{'active':activeArr[5]}" @click.native="changeTab(5)">新闻中心</router-link>
+              </li>
+              <li>
+                <!-- <router-link :to="{name:'contactUs'}" :class="{'active':activeArr[5]}" @click.native="changeTab(5)">联系我们</router-link> -->
+              </li>
+            </ul>
+          </div>
+          <p class="header_oper" v-show="isLogin">
+            <span class="oper_box">
+              <router-link :to="{name:'engineer'}" tag="span" @click.native="changeTab(6)">注册</router-link>
+              <span>|</span>
+              <router-link :to="{name:'LoginIn'}" tag="span" @click.native="changeTab(6)">登录</router-link>
+            </span>
+          </p>
+          <p v-show="hasLogin">
+            欢迎您，<span style="color:#eb7a1d;cursor:pointer;" @click="comeMine()">{{userMes.nickname}}</span>(
+            <span style="cursor:pointer;text-decoration:underline;color:#eb7a1d;" @click="loginOut()">退出</span>)
+          </p>
+          <!-- <p class="admin" @click="admin">Admin</p> -->
+          <!-- <img :src="doll" alt="" class="header-doll"> -->
+          <Mas/>
         </div>
-        <!-- 首页导航 -->
-        <ul class="nav f-l clearfix">
-          <li>
-            <router-link :to="{name:'index'}" :class="{'active':activeArr[0]}" @click.native="changeTab(0)">
-              首页
-            </router-link>
-          </li>
-          <li>
-            <router-link :to="{name:'aboutUs'}" :class="{'active':activeArr[1]}" @click.native="changeTab(1)">关于我们</router-link>
-          </li>
-          <li>
-            <router-link :to="{name:'servicePlatformView'}"  :class="{'active':activeArr[2]}" @click.native="changeTab(2)">犀牛小哥平台</router-link>
-            <!-- <a href="http://www.rightservicetech.com:8080/index" target="_blank">犀牛小哥平台</a> -->
-          </li>
-          <li>
-            <router-link :to="{name:'PlanPro'}" :class="{'active':activeArr[3]}" @click.native="changeTab(3)">产品与解决方案</router-link>
-          </li>
-          <li>
-            <router-link :to="{name:'successfulCaseView'}" :class="{'active':activeArr[4]}" @click.native="changeTab(4)">成功案例</router-link>
-          </li>
-          <li>
-            <router-link :to="{name:'newsView'}" :class="{'active':activeArr[5]}" @click.native="changeTab(5)">新闻中心</router-link>
-          </li>
-          <li>
-            <!-- <router-link :to="{name:'contactUs'}" :class="{'active':activeArr[5]}" @click.native="changeTab(5)">联系我们</router-link> -->
-          </li>
-        </ul>
-      </div>
-      <p class="header_oper" v-show="isLogin">
-        <span class="oper_box">
-          <router-link :to="{name:'engineer'}" tag="span" @click.native="changeTab(6)">注册</router-link>
-          <span>|</span>
-          <router-link :to="{name:'LoginIn'}" tag="span" @click.native="changeTab(6)">登录</router-link>
-        </span>
-      </p>
-      <p v-show="hasLogin">
-        欢迎您，<span style="color:#eb7a1d;cursor:pointer;" @click="comeMine()">{{userMes.nickname}}</span>(
-        <span style="cursor:pointer;text-decoration:underline;color:#eb7a1d;" @click="loginOut()">退出</span>)
-      </p>
-      <p class="admin" @click="admin">Admin</p>
-      <!-- <img :src="doll" alt="" class="header-doll"> -->
-      <Mas/>
-    </div>
-  </header>
+      </el-col>
+    </el-row>
+
+  </div>
 </template>
 
 <script>
@@ -111,9 +116,9 @@
         this.hasLogin=false;
         this.$router.push('/')
       },
-      admin(){
-        this.$router.push('/admin')
-      }
+      // admin(){
+      //   this.$router.push('/admin')
+      // }
     }
   }
 </script>
@@ -122,17 +127,17 @@
 <style lang="scss" scoped>
   .header-card{
     width: 100%;
-    max-width:100%;
     position: fixed;
     left:0;
     top: 0;
-    z-index: 999;
+    z-index: 1000;
     background-color: #fff;
     height: 111px;
-    overflow-y: hidden;
+    overflow: hidden;
     box-shadow: 0px 0px 10px #999;
   }
   .header-box{
+    // background: red;
     margin: 0 auto;
     background-color: #fff;
     .header_oper{
@@ -160,6 +165,7 @@
     height: 51px;
     margin: 0 auto;
     padding: 30px 0;
+    width: 1420px;
     .ht-logo{
       margin-left: 30px;
     }

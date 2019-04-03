@@ -150,7 +150,9 @@ const router= new Router({
       name:'Admin',//临时管理员
       path:'/admin',
       component:resolve=>require(['@/components/admin_tem'],resolve),
-      keep:true,
+      meta:{
+        admin:true
+      },
       children:[
         {
           path:'/admin/wel',

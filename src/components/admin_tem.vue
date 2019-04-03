@@ -85,7 +85,10 @@ export default {
    },
    mounted(){
      this.$refs.crum[0].style.borderBottom='0';
-     this.$refs.close[0].style.display='none'
+     this.$refs.close[0].style.display='none';
+     if(this.abc.length<2){
+       this.$router.push('/admin/wel')
+     }
    },
    methods: {
      handleOpen(key, keyPath) {
@@ -97,15 +100,18 @@ export default {
      choseCru(index){//面包屑选择
        for(let i in this.$refs.crum){
          this.$refs.crum[i].style.borderBottom='1px solid #eb7a1d'
+         this.$refs.crum[i].style.color='black'
        };
        setTimeout(()=>{
          this.closeUrl=this.abc[index].url;
-         this.$refs.crum[index].style.borderBottom='0'
+         this.$refs.crum[index].style.borderBottom='0';
+         this.$refs.crum[index].style.color='#eb7a1d'
        })
      },
      pushCru(index){//添加面包屑
        for(let i in this.$refs.crum){
          this.$refs.crum[i].style.borderBottom='1px solid #eb7a1d'
+         this.$refs.crum[i].style.color='black'
        };
        let curMes={
          name:null,
@@ -122,9 +128,11 @@ export default {
          this.abc.push(curMes);
          setTimeout(()=>{
            this.$refs.crum[this.abc.length-1].style.borderBottom='0';
+           this.$refs.crum[this.abc.length-1].style.color='#eb7a1d'
          })
        }else{
          this.$refs.crum[a.indexOf(curMes.name)].style.borderBottom='0'
+         this.$refs.crum[a.indexOf(curMes.name)].style.color='#eb7a1d'
        }
      },
      delCru(index){//删除面包屑
@@ -144,14 +152,16 @@ export default {
 <style lang="scss" scoped>
 .cru_active{
   border-bottom:0!important;
+  color:#eb7a1d!important;
 }
 .admin{
   margin:0 auto;
-  height: 100vh;
+  max-height: none;
   padding-top: 12px;
   .admin_view{
-    height: 100vh;
     background: white;
+    max-height: none;
+    padding-bottom: 50px;
     .crumbs{
       width: 100%;
       height: 30px;
@@ -162,7 +172,7 @@ export default {
         li{
           float: none;
           line-height: 30px;
-          min-width: 8%;
+          min-width: 110px;
           max-width: none;
           text-align: center;
           border:1px solid #eb7a1d;
