@@ -44,9 +44,11 @@
             </el-option>
           </el-select>
         </div></el-col>
-        <el-col :span="4"><div class="title_con">
-          <i class="el-icon-tickets" style="font-size:20px;cursor:pointer;" @click="takeDis(index)"></i>
-        </div></el-col>
+        <el-col :span="4">
+          <div class="title_con">
+            <i class="el-icon-tickets" style="font-size:20px;cursor:pointer;" @click="takeDis(index)"></i>
+          </div>
+        </el-col>
       </el-row>
     </div>
     <!-- 分页器 -->
@@ -254,6 +256,9 @@ export default {
       font-size: 15px;
       line-height: 50px;
       max-height: none;
+      .el-icon-tickets{
+        color:red;
+      }
     }
   }
   .el_con:nth-of-type(even){
