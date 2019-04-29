@@ -169,20 +169,8 @@ export default {
       let file=e.target.files[0];
       let reader=new FileReader();
       reader.readAsDataURL(file);
-      let img=new Image;
-      reader.onload=function(e){
-        var width=400,
-        quality=0.1,
-        canvas=document.createElement("canvas"),
-        drawer=canvas.getContext("2d");
-        img.src=this.result;
-        img.onload=()=>{
-          canvas.width=width;
-          canvas.height=width*(img.height/img.width);
-          drawer.drawImage(img,0,0,canvas.width,canvas.height);
-          img.src=canvas.toDataURL('image/png',quality);
-        };
-        _this.cardIs=img.src
+      reader.onload=function(){
+        _this.cardIs=this.src
       };
     },
     upThe(e){//上传身份证反面照

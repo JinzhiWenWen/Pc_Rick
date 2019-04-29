@@ -1,4 +1,4 @@
-<!-- 未接订单 -->
+<!-- 已接订单 -->
 <template lang="html">
   <div class="answerOrder">
     <img src="../../../static/images/order_refresh.png" class="refresh" alt="" @click="refreshOrder()">
@@ -50,8 +50,9 @@
         </div>
       </el-col>
     </el-row>
-    <ul class="order_list" v-loading="false" v-show="orderLength">
-      <li v-for="(order,index) in orderList" :key="index">
+    <ul class="order_list" v-show="orderLength">
+      <li class="loadMask" v-loading="receLoad" v-show="receLoad"></li>
+      <li v-for="(order,index) in orderList" :key="index" class="listCon">
         <span class="title_mask" style="color:#eb7a1d;" v-show="order.stateStr==='接单状态'">可接单</span>
         <span class="title_mask" style="color:#666;" v-show="order.stateStr==='截单状态'">已截单</span>
         <span class="order_time">{{order.createTimeStr}}</span>
@@ -59,11 +60,11 @@
         <p class="order_place">{{order.placeVO.parentName}}-{{order.placeVO.name}}/{{order.address}}</p>
         <p class="order_content">{{order.content}}</p>
         <p class="order_btn">
-          <el-button type="primary" size="small" @click="delOrder(index)" :disabled="order.stateStr==='截单状态'">撤销申请</el-button>
+          <el-button type="primary" size="small" @click="delOrder(index)" :disabled="order.isDis">撤销申请</el-button>
         </p>
       </li>
     </ul>
-    <p style="text-align:center;" v-show="orderLength">
+    <p style="text-align:center;margin-bottom:100px;margin-top:50px;" v-show="orderLength">
       <el-pagination
         @current-change="orderPage"
         layout="prev, pager, next"
@@ -122,7 +123,8 @@ export default {
       orderList:[],//数据列表
       orderLength:true,//是否有数据
       isLogin:'暂无更多项目',
-      goLogin:''
+      goLogin:'',
+      receLoad:false,//是否启用loading
     }
   },
   mounted(){
@@ -178,6 +180,7 @@ export default {
       })
     },
     delOrder(index){//撤销申请项目
+      console.log(this.orderList[index])
         this.$confirm('您确定要进行撤销吗？', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
@@ -216,6 +219,7 @@ export default {
     },
     getOrderList(){//获取项目列表
       let _vm=this;
+      _vm.receLoad=true;
       let formdata=new FormData();
       if(_vm.userMes.engineerVO){
         formdata.append('engineerIdIn',_vm.userMes.engineerVO.id);
@@ -229,17 +233,27 @@ export default {
         }
         _vm.$ajax.post(_vm.url+'/mission/findMissionListByCondition',formdata).then((res)=>{
           if(res.data.code==0){
+            _vm.receLoad=false;
             _vm.page=res.data.data.totalPages*10;
             _vm.orderList=res.data.data.content;
+            for(let i in _vm.orderList){
+              if(_vm.orderList[i].missionRecordState==-1||_vm.orderList[i].missionRecordState==1||_vm.orderList[i].stateStr==='截单状态'){
+                _vm.$set(_vm.orderList[i],'isDis',true)
+              }else{
+                _vm.$set(_vm.orderList[i],'isDis',false)
+              }
+            }
             if(_vm.orderList.length<1){
               _vm.orderLength=false;
             }else{
               _vm.orderLength=true;
             }
           }else{
+            _vm.receLoad=false;
             _vm.$message.error(res.data.msg)
           }
         }).catch((err)=>{
+          _vm.receLoad=false;
           _vm.$message.error('未知错误,请联系管理员')
           console.log(err)
         })
@@ -311,7 +325,18 @@ export default {
   }
   .order_list{
     width: 100%;
-    li{
+    min-height: 600px;
+    position: relative;
+    .loadMask{
+      width: 100%;
+      height: 450px;
+      background: regba(0,0,0,0);
+      position: absolute;
+      top:0;
+      left:0;
+      z-index: 10;
+    }
+    .listCon{
       width: 99.5%;
       margin:0 auto;
       min-height: 150px;
@@ -359,7 +384,7 @@ export default {
         padding-right: 15px;
       }
     }
-    li:hover{
+    .listCon:hover{
       box-shadow: 0px 0px 10px #666;
     }
   }

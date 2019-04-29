@@ -77,7 +77,7 @@
             personList2:[
               {name:"张志伟",type:"IT，数通",experience:"18年",professionType:"-",icon:"person_zzw.png"},
               {name:"腾福庆",type:"能基",experience:"14年",professionType:"-",icon:"person_tfq.png"},
-              {name:"孙立业",type:"运维",experience:"14年",professionType:"HCNA",icon:"person_sly.png"},
+              {name:"孙立业",type:"运维",experience:"14年",professionType:"HCIE",icon:"person_sly.png"},
               {name:"张磊",type:"光伏，VC",experience:"10年",professionType:"-",icon:"person_zl.png"},
             ]
           }

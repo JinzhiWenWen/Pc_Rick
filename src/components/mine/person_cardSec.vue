@@ -153,8 +153,9 @@ export default {
       let _vm=this;
       let formData=new FormData();
       formData.append('id',_vm.userMes.engineerVO.id)
-      formData.append('identityUploadFiles',_vm.cardFile[0]);
-      formData.append('identityUploadFiles',_vm.cardFile[1]);
+      _vm.cardFile.forEach((e)=>{
+        formData.append('identityUploadFiles',e);
+      })
       _vm.$ajax.post(_vm.url+'/mobile/uploadEngineerFile',formData).then((res)=>{
         if(res.data.code==0){
           this.$alert('上传成功', '提示', {

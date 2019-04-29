@@ -130,7 +130,7 @@
     position: fixed;
     left:0;
     top: 0;
-    z-index: 1000;
+    z-index: 6666;
     background-color: #fff;
     height: 111px;
     overflow: hidden;

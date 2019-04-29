@@ -50,8 +50,9 @@
         </div>
       </el-col>
     </el-row>
-    <ul class="order_list" v-loading="false" v-show="orderLength">
-      <li v-for="(order,index) in orderList" :key="index">
+    <ul class="order_list" v-show="orderLength">
+      <li class="loadMask" v-loading="ansLoad" v-show="ansLoad"></li>
+      <li v-for="(order,index) in orderList" :key="index" class="lsitCon">
         <span class="title_mask" style="color:#eb7a1d;" v-show="order.stateStr==='接单状态'">可接单</span>
         <span class="title_mask" style="color:#666;" v-show="order.stateStr==='截单状态'">已截单</span>
         <span class="order_time">{{order.createTimeStr}}</span>
@@ -59,11 +60,11 @@
         <p class="order_place">{{order.placeVO.parentName}}-{{order.placeVO.name}}/{{order.address}}</p>
         <p class="order_content">{{order.content}}</p>
         <p class="order_btn">
-          <el-button type="primary" size="small" @click="applyOrder(index)">立即申请</el-button>
+          <el-button type="primary" size="small" @click="applyOrder(index)" :disabled="order.stateStr==='截单状态'">立即申请</el-button>
         </p>
       </li>
     </ul>
-    <p style="text-align:center;" v-show="orderLength">
+    <p style="text-align:center;margin-bottom:100px;margin-top:50px;" v-show="orderLength">
       <el-pagination
         @current-change="orderPage"
         layout="prev, pager, next"
@@ -115,6 +116,7 @@ export default {
         },
       orderList:[],//数据列表
       orderLength:true,//是否有数据
+      ansLoad:false,//是否启用loading
     }
   },
   mounted(){
@@ -188,10 +190,6 @@ export default {
         }).catch(()=>{
           console.log('已取消')
         })
-      }else if(this.orderList[index].stateStr==='截单状态'){
-        this.$alert('很抱歉,该项目已截止申请', '抱歉', {
-          confirmButtonText: '确定',
-        })
       }else{
         let formdata=new FormData();
         let userId=this.userMes.engineerVO.id;
@@ -201,7 +199,8 @@ export default {
           if(res.data.code==0){
             this.$alert('申请成功,稍后将会为您进行审核,请留意',{
               confirmButtonText: '确定',
-            })
+            });
+            this.getOrderList()
           }else{
             this.$confirm(res.data.msg, '提示', {
               confirmButtonText: '确定',
@@ -229,6 +228,7 @@ export default {
     },
     getOrderList(){//获取项目列表
       let _vm=this;
+      _vm.ansLoad=true;
       let formdata=new FormData();
       if(_vm.userMes.engineerVO){
         formdata.append('engineerIdOut',_vm.userMes.engineerVO.id)
@@ -243,6 +243,7 @@ export default {
       }
       _vm.$ajax.post(_vm.url+'/mission/findMissionListByCondition',formdata).then((res)=>{
         if(res.data.code==0){
+          _vm.ansLoad=false;
           _vm.page=res.data.data.totalPages*10;
           _vm.orderList=res.data.data.content;
           if(_vm.orderList.length<1){
@@ -251,9 +252,11 @@ export default {
             _vm.orderLength=true;
           }
         }else{
+          _vm.ansLoad=false;
           _vm.$message.error(res.data.msg)
         }
       }).catch((err)=>{
+        _vm.ansLoad=false;
         _vm.$message.error('未知错误,请联系管理员')
         console.log(err)
       })
@@ -320,7 +323,18 @@ export default {
   }
   .order_list{
     width: 100%;
-    li{
+    min-height: 600px;
+    position: relative;
+    .loadMask{
+      width: 100%;
+      height: 450px;
+      background: regba(0,0,0,0);
+      position: absolute;
+      top:0;
+      left:0;
+      z-index: 10;
+    }
+    .lsitCon{
       width: 99.5%;
       margin:0 auto;
       min-height: 150px;
@@ -368,7 +382,7 @@ export default {
         padding-right: 15px;
       }
     }
-    li:hover{
+    .lsitCon:hover{
       box-shadow: 0px 0px 10px #666;
     }
   }

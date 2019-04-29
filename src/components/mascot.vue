@@ -3,11 +3,14 @@
   <div class="mascot">
     <div class="header-doll">
       <div class="header-msg">
-        联系客服
+        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3324729049&site=qq&menu=yes">
+            联系客服
+        </a>
+
       </div>
       <p>
-        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=487771938&site=qq&menu=yes">
-          <img border="0" src="http://wpa.qq.com/pa?p=2:487771938:53" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3324729049&site=qq&menu=yes">
+          <img border="0" src="http://wpa.qq.com/pa?p=2:3324729049:53" alt="点击这里给我发消息" title="点击这里给我发消息"/>
         </a>
       </p>
     </div>
@@ -26,7 +29,7 @@ export default {
   height:90px;
   position: fixed;
   bottom:160px;
-  left:95%;
+  right:20px;
   background: url('../../static/images/right_doll.png');
   background-size: 100% 100%;
   cursor:pointer;
@@ -40,9 +43,11 @@ export default {
     top:-5px;
     text-align: center;
     line-height: 28px;
-    color:white;
-    font-weight: bold;
-    font-size: 12px;
+    a{
+      color:white;
+      font-weight: bold;
+      font-size: 12px;
+    }
   }
   p{
     width: 100px;

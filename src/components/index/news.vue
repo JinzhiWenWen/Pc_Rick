@@ -172,8 +172,10 @@
             width: 100%;
             display: flex;
             float: none;
-            padding-bottom:5px;
+            padding-bottom:15px;
             padding-top:20px;
+            min-height: 170px;
+            border-bottom:1px solid #ccc;
             .company-pic{
               width: 40%;
               padding-left: 10px;
@@ -197,14 +199,11 @@
               }
               .msg-date{
                 position: absolute;
-                bottom:-5px;
+                bottom:-25px;
                 right:0;
               }
             }
 
-          }
-          li:first-child{
-            border-bottom:1px solid #ccc;
           }
         }
       }
@@ -228,6 +227,8 @@
             display: flex;
             float: none;
             padding-bottom:5px;
+            min-height: 170px;
+            border-bottom:1px solid #ccc;
             padding-top:20px;
             .company-pic{
               width: 40%;
@@ -252,14 +253,11 @@
               }
               .msg-date{
                 position: absolute;
-                bottom:-5px;
+                bottom:-15px;
                 right:0;
               }
             }
 
-          }
-          li:first-child{
-            border-bottom:1px solid #ccc;
           }
         }
       }

@@ -96,7 +96,20 @@ const router= new Router({
     {
       path:'/person/personSingle',//接单赚钱
       name:'PersonSingle',
-      component:resolve=>require(['@/components/person/person_single'],resolve)
+      component:resolve=>require(['@/components/person/person_single'],resolve),
+      children:[
+        {
+          path:'/person/personAnswer',//未接项目
+          name:'PersonAnswer',
+          component:resolve=>require(['@/components/person/person_answer'],resolve)
+        },
+        {
+          path:'/person/personReceived',//已接项目
+          name:'PersonReceived',
+          component:resolve=>require(['@/components/person/person_received'],resolve)
+        }
+      ],
+      redirect:'/person/personAnswer'
     },
     {
       name:'servicePlatformView',

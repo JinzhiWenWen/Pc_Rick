@@ -152,12 +152,10 @@ export default {
     upFile(){//上传文件
       let _vm=this;
       let formData=new FormData();
-      formData.append('id',_vm.userMes.engineerVO.id)
-      formData.append('certificateUploadFiles',_vm.cardFile[0]);
-      formData.append('certificateUploadFiles',_vm.cardFile[1]);
-      formData.append('certificateUploadFiles',_vm.cardFile[2]);
-      formData.append('certificateUploadFiles',_vm.cardFile[3]);
-      formData.append('certificateUploadFiles',_vm.cardFile[4]);
+      formData.append('id',_vm.userMes.engineerVO.id);
+      _vm.cardFile.forEach((e)=>{
+        formData.append('certificateUploadFiles',e);
+      })
       _vm.$ajax.post(_vm.url+'/mobile/uploadEngineerFile',formData).then((res)=>{
         if(res.data.code==0){
           this.$alert('上传成功', '提示', {

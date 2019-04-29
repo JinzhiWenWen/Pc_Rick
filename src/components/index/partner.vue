@@ -1,7 +1,7 @@
 <template>
   <div class="partner w1420">
     <p class="partner-title">合作伙伴</p>
-    <p class="wow partner-line"></p>
+    <!-- <p class="wow partner-line"></p> -->
     <div class="partner-list clearfix">
       <div class="wow partner-logo f-l">
         <a href="http://www.cnbmtech.com" target="_blank">
