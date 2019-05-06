@@ -53,6 +53,106 @@
             </ul>
           </div>
         </div>
+        <div class="item-content f-l clearfix swiper-slide">
+          <div class="item-card f-l" v-for="(person,index) in personList3">
+            <ul>
+              <li>
+                <img :src="imgUrl+person.icon"/>
+                <p class="mark-floor"></p>
+              </li>
+              <li>
+                {{person.name}}
+              </li>
+              <li>
+                {{person.type}}
+              </li>
+              <li>
+                {{person.experience}}
+              </li>
+              <li>
+                {{person.professionType}}
+              </li>
+              <li>
+                <span>联系他</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="item-content f-l clearfix swiper-slide">
+          <div class="item-card f-l" v-for="(person,index) in personList4">
+            <ul>
+              <li>
+                <img :src="imgUrl+person.icon"/>
+                <p class="mark-floor"></p>
+              </li>
+              <li>
+                {{person.name}}
+              </li>
+              <li>
+                {{person.type}}
+              </li>
+              <li>
+                {{person.experience}}
+              </li>
+              <li>
+                {{person.professionType}}
+              </li>
+              <li>
+                <span>联系他</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="item-content f-l clearfix swiper-slide">
+          <div class="item-card f-l" v-for="(person,index) in personList5">
+            <ul>
+              <li>
+                <img :src="imgUrl+person.icon"/>
+                <p class="mark-floor"></p>
+              </li>
+              <li>
+                {{person.name}}
+              </li>
+              <li>
+                {{person.type}}
+              </li>
+              <li>
+                {{person.experience}}
+              </li>
+              <li>
+                {{person.professionType}}
+              </li>
+              <li>
+                <span>联系他</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="item-content f-l clearfix swiper-slide">
+          <div class="item-card f-l" v-for="(person,index) in personList6">
+            <ul>
+              <li>
+                <img :src="imgUrl+person.icon"/>
+                <p class="mark-floor"></p>
+              </li>
+              <li>
+                {{person.name}}
+              </li>
+              <li>
+                {{person.type}}
+              </li>
+              <li>
+                {{person.experience}}
+              </li>
+              <li>
+                {{person.professionType}}
+              </li>
+              <li>
+                <span>联系他</span>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
       <div class="swiper-pagination swiper-p2" style="display: none;"></div>
       <div class="swiper-button-prev" id="prev-btn2"></div>
@@ -79,7 +179,29 @@
               {name:"腾福庆",type:"能基",experience:"14年",professionType:"-",icon:"person_tfq.png"},
               {name:"孙立业",type:"运维",experience:"14年",professionType:"HCIE",icon:"person_sly.png"},
               {name:"张磊",type:"光伏，VC",experience:"10年",professionType:"-",icon:"person_zl.png"},
-            ]
+            ],
+            personList3:[
+              {name:"刘鹏",type:"光伏，视讯",experience:"8年",professionType:"HCNP",icon:"person_lp.png"},
+              {name:"陈记",type:"视讯",experience:"9年",professionType:"HCNP",icon:"person_cj.png"},
+              {name:"杨海光",type:"数通，IT",experience:"7年",professionType:"HCIE",icon:"person_yhg.png"},
+              {name:"马东慧",type:"数通，IT",experience:"8年",professionType:"HCNP",icon:"person_mdh.png"},
+            ],
+            personList4:[
+              {name:"凌含涛",type:"数通，IT",experience:"6年",professionType:"HCNP",icon:"person_lht.png"},
+              {name:"张立鹏",type:"数通，IT",experience:"5年",professionType:"HCNP",icon:"person_zlp.png"},
+              {name:"容雄",type:"数通，IT",experience:"7年",professionType:"HCNP",icon:"person_rx.png"},
+              {name:"朱贺真",type:"UC，CC，监控",experience:"5年",professionType:"HCNP",icon:"person_zhz.png"},
+            ],
+            personList5:[
+              {name:"张东磊",type:"UC，CC，监控",experience:"10年",professionType:"HCNP",icon:"person_zdl.png"},
+              {name:"于晓东",type:"UC，CC，监控",experience:"9年",professionType:"HCNP",icon:"person_yxd.png"},
+              {name:"张陆",type:"UC，CC，监控",experience:"5年",professionType:"HCNP",icon:"person_zl2.png"},
+              {name:"赵小林",type:"系统集成",experience:"8年",professionType:"HCNP",icon:"person_zxl.png"},
+            ],
+            personList6:[
+              {name:"罗亮",type:"能基",experience:"9年",professionType:"HCNP",icon:"person_ll.png"},
+              {name:"张江林",type:"能基",experience:"10年",professionType:"HCNP",icon:"person_zjl.png"},
+            ],
           }
         },
         mounted(){
