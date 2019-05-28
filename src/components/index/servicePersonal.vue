@@ -195,7 +195,7 @@
             personList5:[
               {name:"张东磊",type:"UC，CC，监控",experience:"10年",professionType:"HCNP",icon:"person_zdl.png"},
               {name:"于晓东",type:"UC，CC，监控",experience:"9年",professionType:"HCNP",icon:"person_yxd.png"},
-              {name:"张陆",type:"UC，CC，监控",experience:"5年",professionType:"HCNP",icon:"person_zl2.png"},
+              {name:"张陆",type:"UC，CC，监控",experience:"5年",professionType:"HCNP",icon:"aaaaa.png"},
               {name:"赵小林",type:"系统集成",experience:"8年",professionType:"HCNP",icon:"person_zxl.png"},
             ],
             personList6:[
