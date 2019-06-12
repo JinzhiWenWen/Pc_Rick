@@ -11,11 +11,11 @@ Vue.component('footerNav',footer)
 // 数据请求
 import Axios from 'axios'
 // Axios.defaults.baseURL = 'http://rightservicetech.com:8080'
-// Axios.defaults.baseURL = 'http://10.0.0.31:8080'
-Axios.defaults.baseURL = 'http://hexsoft.top:8080'
+Axios.defaults.baseURL = 'http://10.0.0.31:8080'
+// Axios.defaults.baseURL = 'http://hexsoft.top:8080'
 // Vue.prototype.url="http://rightservicetech.com:8080/"
-// Vue.prototype.url="http://10.0.0.31:8080/"
-Vue.prototype.url="http://hexsoft.top:8080/"
+Vue.prototype.url="http://10.0.0.31:8080/"
+// Vue.prototype.url="http://hexsoft.top:8080/"
 Vue.prototype.$ajax = Axios
 Vue.prototype.dataURL = function (file,title,id) {
   id = (id === undefined)?'':id;
@@ -160,34 +160,67 @@ const router= new Router({
       redirect:'/mine/personMes'
     },
     {
-      name:'Admin',//临时管理员
-      path:'/admin',
-      component:resolve=>require(['@/components/admin_tem'],resolve),
-      meta:{
-        admin:true
-      },
+      name:'CompanyMine',//企业中心
+      path:'/companyMine',
+      component:resolve=>require(['@/components/mine/companyMine'],resolve),
       children:[
         {
-          path:'/admin/wel',
-          name:'Wel',
-          component:resolve=>require(['@/components/admin_welcome'],resolve)
+          name:'PersonMes',//用户资料
+          path:'/companyMine/personMes',
+          component:resolve=>require(['@/components/mine/person_mes'],resolve)
         },
         {
-          path:'/admin/order',
-          name:'Order',
-          component:resolve=>require(['@/components/admin_order'],resolve)
+          name:'ChangeMes',//编辑资料
+          path:'/companyMine/changeMes',
+          component:resolve=>require(['@/components/mine/change_mes'],resolve)
         },
         {
-          path:'/admin/role',
-          component:resolve=>require(['@/components/admin_role'],resolve)
+          name:'PersonCard',//身份认证
+          path:'/companyMine/companyCard',
+          component:resolve=>require(['@/components/mine/company_card'],resolve)
         },
         {
-          path:'/admin/channel',
-          component:resolve=>require(['@/components/admin_channel'],resolve)
+          name:'PersonSkill',//技能认证
+          path:'/companyMine/personSkill',
+          component:resolve=>require(['@/components/mine/person_skills'],resolve)
+        },
+        {
+          name:'PersonCation',//资质申请
+          path:'/companyMine/personCation',
+          component:resolve=>require(['@/components/mine/person_cation'],resolve)
         },
       ],
-      redirect:'/admin/wel'
-    }
+      redirect:'/companyMine/personMes'
+    },
+    // {
+    //   name:'Admin',//临时管理员
+    //   path:'/admin',
+    //   component:resolve=>require(['@/components/admin_tem'],resolve),
+    //   meta:{
+    //     admin:true
+    //   },
+    //   children:[
+    //     {
+    //       path:'/admin/wel',
+    //       name:'Wel',
+    //       component:resolve=>require(['@/components/admin_welcome'],resolve)
+    //     },
+    //     {
+    //       path:'/admin/order',
+    //       name:'Order',
+    //       component:resolve=>require(['@/components/admin_order'],resolve)
+    //     },
+    //     {
+    //       path:'/admin/role',
+    //       component:resolve=>require(['@/components/admin_role'],resolve)
+    //     },
+    //     {
+    //       path:'/admin/channel',
+    //       component:resolve=>require(['@/components/admin_channel'],resolve)
+    //     },
+    //   ],
+    //   redirect:'/admin/wel'
+    // }
   ]
 });
 router.beforeEach((to,from,next)=>{

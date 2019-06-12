@@ -87,7 +87,6 @@
       bus.$on("clickChannel",function (activeArr) {
         that.activeArr = activeArr;
       });
-      console.log(that.userMes);
       if(that.userMes.nickname){
         that.isLogin=false;
         that.hasLogin=true;
@@ -99,7 +98,11 @@
     methods:{
       ...mapMutations(['userMes_fn']),
       comeMine(){//跳转个人中心
-        this.$router.push('/mine');
+        if(this.userMes.identityCode==3){
+          this.$router.push('/companyMine');
+        }else{
+          this.$router.push('/mine');
+        }
         this.changeTab(6)
       },
       changeTab(num){

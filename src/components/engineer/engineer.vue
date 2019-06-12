@@ -2,10 +2,14 @@
   <div class="engineer w100">
     <div class="engineer-content">
       <div class="engineer-box">
+        <p>
+          <el-radio v-model="isCompany" label="1" size="medium">小哥账户</el-radio>
+          <el-radio v-model="isCompany" label="2" size="medium">公司账户 </el-radio>
+        </p>
         <div class="" style="display:flex;">
           <div class="input_title">
             <ul>
-              <li>姓名:</li>
+              <li>姓名/企业名称:</li>
               <li>手机号:</li>
               <li>登录名:</li>
               <li>密码:</li>
@@ -15,11 +19,11 @@
           <div class="input_msg">
             <ul>
               <li>
-                <input type="text" name="" @blur="noName()" value="" v-model="userName" placeholder="请输入您的姓名">
+                <input type="text" name="" @blur="noName()" value="" v-model="userName" placeholder="请输入您的姓名或企业名称">
                 <span v-show="isHasName">{{turnName}}</span>
               </li>
               <li>
-                <input type="text" name="" @blur="noPhone()" value="" v-model="userPhone" placeholder="请输入您的手机号">
+                <input type="number" name="" @blur="noPhone()" value="" v-model="userPhone" placeholder="请输入您的手机号">
                 <span v-show="isHasPhone">{{isNumber}}</span>
               </li>
               <li>
@@ -74,6 +78,7 @@ import {mapMutations} from 'vuex'
             engText:'注册',
             turnEng:false,//是否禁用按钮
             isTurn:false,//是否启用loading
+            isCompany:'1',//是否为企业账户
           }
         },
         methods:{
@@ -91,7 +96,7 @@ import {mapMutations} from 'vuex'
           noPhone(){//检测手机号
             if(this.userPhone==null){
               this.isHasPhone=true;
-            }else if(!(/^1[34578]\d{9}$/.test(this.userPhone))){
+            }else if(this.userPhone.length<11){
               this.isNumber='*请输入正确的手机号';
               this.isHasPhone=true;
             }else{
@@ -131,7 +136,7 @@ import {mapMutations} from 'vuex'
               _vm.isHasName=true;
             }else if(_vm.userPhone==null){
               _vm.isHasPhone=true;
-            }else if(!(/^1[34578]\d{9}$/.test(_vm.userPhone))){
+            }else if(_vm.userPhone.length<11){
               _vm.isNumber='*请输入正确的手机号';
               _vm.isHasPhone=true;
             }else if(_vm.userNickName==null){
@@ -147,6 +152,12 @@ import {mapMutations} from 'vuex'
               _vm.isTurn=true;
               _vm.turnEng=true;
               _vm.engText='';
+              let isComPars=null;
+              if(_vm.isCompany=='1'){
+                isComPars=false;
+              }else{
+                isComPars=true;
+              };
               _vm.$ajax({
                   method: 'post',
                   url:_vm.dataURL('saveExternalEngineer'),
@@ -154,7 +165,8 @@ import {mapMutations} from 'vuex'
                     name:_vm.userName,
                     phone:_vm.userPhone,
                     username:_vm.userNickName,
-                    password:_vm.turnPassW
+                    password:_vm.turnPassW,
+                    isCompany:isComPars
                   }
                 }).then((res)=>{
                   _vm.isTurn=false;
@@ -169,17 +181,26 @@ import {mapMutations} from 'vuex'
                       type: 'success',
                       offset:100
                     });
+                    if(res.data.data.identityCode==3){
+                      alert(1)
+                    }
                     _vm.$router.push('/');
                     _vm.reload();
                   }else if(res.data.code==115){
+                    _vm.isTurn=false;
+                    _vm.turnEng=false;
                     _vm.isNumber='*此手机号已注册';
                     _vm.isHasPhone=true;
                   }else if(res.data.code==114){
                     _vm.isNickName='*此登录名已注册'
                     _vm.isHasNickName=true;
+                    _vm.isTurn=false;
+                    _vm.turnEng=false;
                   }
                 }).catch((err)=>{
                   console.log(err)
+                  _vm.isTurn=false;
+                  _vm.turnEng=false;
                 })
             }
           },
@@ -204,7 +225,7 @@ import {mapMutations} from 'vuex'
     position: relative;
     .engineer-box{
       width: 500px;
-      height: 350px;
+      height: 380px;
       min-width: 450px;
       min-height: 250px;
       position: absolute;
