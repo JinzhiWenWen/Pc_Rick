@@ -34,7 +34,7 @@
     import carousel from './index/carousel'
     import tabCard from './index/tabCard'
     import servicePlatform from './index/servicePlatform'
-    import servicePersonal from './index/servicePersonal'
+    import servicePersonal from './index/engBanner'
     import news from './index/news'
     import mapBox from './index/map'
     import partner from './index/partner'
