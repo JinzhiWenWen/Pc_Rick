@@ -17,7 +17,7 @@
             <p class="eng_name">{{eng.name}}</p>
             <p class="eng_skill">{{eng.type}}</p>
             <p class="eng_skill">{{eng.experience}}经验&nbsp;&nbsp;&nbsp;{{eng.professionType}}</p>
-            <p class="eng_remark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;熟悉SQL serverXX/XX Mysql数据库,熟悉数据的调拨、查询、销售统计、数据汇总;熟悉网络信息安全技术,了解企业安全及解决方案。</p>
+            <p class="eng_remark">&nbsp;&nbsp;&nbsp;熟悉数据库,熟悉数据的调拨、查询、销售统计、数据汇总;熟悉网络信息安全技术,了解企业安全及解决方案。</p>
           </div>
         </div>
       </div>
@@ -57,8 +57,8 @@ export default {
   },
   mounted(){
     let swiperSec = new Swiper('.swiper-containerSec', {
-        slidesPerView: 4.68,
-        spaceBetween: 30,
+        slidesPerView:5,
+        spaceBetween: 120,
   	    centeredSlides: true,
   	    loop: true,
         pagination: {
@@ -85,6 +85,7 @@ export default {
   height: 700px;
   box-sizing: border-box;
   position: relative;
+  margin:0 auto;
   .banner_title{
     padding: 30px 0 20px;
     text-align: center;
@@ -103,7 +104,7 @@ export default {
   }
   .swiper-containerSec {
     width: 100%;
-    height: 70%;
+    height: 60%;
   }
   .swiper-paginationSec{
     position: absolute;
@@ -115,7 +116,7 @@ export default {
     z-index: 100;
   }
   .swiper-slide {
-    width: 280px!important;
+    // width: 280px!important;
     background: #fff;
     transition: 1000ms;
     transform: scale(.8);
@@ -124,17 +125,18 @@ export default {
     box-sizing: border-box;
     box-shadow: 0px 10px 10px #af4c18;
     position: relative;
+    margin-top: 30px;
     background: rgba(232,101,33,1);
     .eng_mes{
-      width: 280px;
+      width: 200px;
       position: absolute;
       top:0;
-      right: 0;
+      right: -11px;
       height: 133px;
       .eng_mask{
         width: 100%;
         height: 190px;
-        border-left:278px solid black;
+        border-left:188px solid black;
         border-bottom:37px solid transparent;
         margin-left: 2px;
         margin-top:.5px;
@@ -156,7 +158,7 @@ export default {
         top:104%;
         color:white;
         z-index: 2;
-        font-size: 17px;
+        font-size: 16px;
       }
       img{
         width: 100px;
@@ -172,15 +174,17 @@ export default {
         width: 100%;
         text-align: center;
         color:white;
-        font-size: 18px;
+        font-size: 15px;
       }
       .eng_remark{
-        font-size: 18px;
+        font-size: 15px;
         color:white;
-        width: 80%;
+        width: 90%;
         margin:0 auto;
         margin-top: 30px;
         text-align: justify;
+        box-sizing: border-box;
+        padding-right: 5px;
       }
     }
   }
