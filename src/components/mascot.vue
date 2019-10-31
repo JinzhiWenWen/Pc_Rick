@@ -2,7 +2,15 @@
 <template lang="html">
   <div class="mascot">
     <div class="header-doll">
-      <div class="header-msg">
+      <ul>
+        <li>
+          <img src="../../static/images/contact_icon_phone.png" alt="">
+        </li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+      <!-- <div class="header-msg">
         <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3324729049&site=qq&menu=yes">
             联系客服
         </a>
@@ -12,7 +20,8 @@
         <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3324729049&site=qq&menu=yes">
           <img border="0" src="http://wpa.qq.com/pa?p=2:3324729049:53" alt="点击这里给我发消息" title="点击这里给我发消息"/>
         </a>
-      </p>
+      </p> -->
+
     </div>
   </div>
 </template>
@@ -25,40 +34,42 @@ export default {
 
 <style lang="scss" scoped>
 .header-doll{
-  width:95px;
-  height:90px;
+  height:400px;
   position: fixed;
-  bottom:160px;
-  right:20px;
-  background: url('../../static/images/right_doll.png');
-  background-size: 100% 100%;
+  width: 70px;
+  bottom:50%;
+  margin-bottom: -200px;
+  right:0;
   cursor:pointer;
-  .header-msg{
-    width: 100px;
-    height: 30px;
-    background: url('../../static/images/header_msg.png');
-    background-size: 100%  100%;
-    position: absolute;
-    left:-110px;
-    top:-5px;
-    text-align: center;
-    line-height: 28px;
-    a{
-      color:white;
-      font-weight: bold;
-      font-size: 12px;
-    }
-  }
-  p{
-    width: 100px;
-    height: 30px;
-    opacity: 0;
-    a{
+  ul{
+    height: 100%;
+    width: 60px;
+    position: relative;
+    li{
+      width: 190px;
+      height: 60px;
+      border-radius: 5px;
+      margin-bottom: 5px;
+      background: #ccc;
+      transition: .5s all;
+      position: absolute;
+      right: -140px;
       img{
-        display: inline-block;
-        width: 100px;
-        height: 100px;
+        width: 60px;
+        height:100%;
       }
+    }
+    li:nth-child(2){
+      top:65px;
+    }
+    li:nth-child(3){
+      top:130px
+    }
+    li:nth-child(4){
+      top:195px;
+    }
+    li:hover{
+      right:-10px;
     }
   }
 }
