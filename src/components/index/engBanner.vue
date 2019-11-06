@@ -67,7 +67,7 @@ export default {
           // type:'progressbar'
         },
         autoplay: {
-         delay:2000,//2秒切换一次
+         delay:5000,//2秒切换一次
          stopOnLastSlide: false,
          disableOnInteraction: false,
        }
