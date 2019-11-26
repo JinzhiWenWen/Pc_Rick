@@ -24,12 +24,12 @@
     </div> -->
     <div class="swiper-container">
     <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <img src="../../../static/images/banner2_1.png" alt="">
+      <!-- <div class="swiper-slide"> -->
+        <!-- <img src="../../../static/images/banner2_1.png" alt="">
       </div>
       <div class="swiper-slide">
-        <img src="../../../static/images/banner2_2.png" alt="">
-      </div>
+        <img src="../../../static/images/banner2_2.png" alt=""> -->
+      <!-- </div> -->
       <!-- <div class="swiper-slide">
         <img src="../../../static/images/banner1_1.png" alt="">
       </div>
@@ -82,7 +82,11 @@
     .swiper-container {
        width: 100%;
        height: 571px;
+       @media screen and (min-width: 2560px){
+         height: 600px!important;
+       }
      }
+
      .swiper-slide {
        text-align: center;
        font-size: 18px;

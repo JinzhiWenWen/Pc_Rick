@@ -23,6 +23,11 @@
           <img src="../../../static/images/cor_logo4_home_nor.png"/>
         </a>
       </div>
+      <div class="wow partner-logo f-l">
+        <a href="#" target="_blank">
+          <img src="../../../static/images/ext.png" style="width:150px;"/>
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -51,6 +56,7 @@
 <style lang="scss" scoped>
   /*合作伙伴*/
   .partner {
+    width: 100%;
     margin: 0 auto;
     .partner-title {
       padding-top: 30px;
@@ -66,17 +72,23 @@
       // animation: fadeInDownBig 1s;
     }
     .partner-list {
+      width: 100%;
       margin: 40px 80px 60px;
       text-align: center;
+      padding-right: 100px;
       display: flex;
       justify-content: space-around;
+      padding-right: 170px;
       .partner-logo{
+        text-align: center;
+        display: flex;
+        justify-content: space-around;
         // &>a{
         //   display: block;
         // }
         img{
           width: 65%;
-          height: 100%;
+          height: 80%;
         }
       }
       // .partner-logo + .partner-logo {

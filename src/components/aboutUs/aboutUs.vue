@@ -41,7 +41,7 @@
       </li>
       <li>
         <span class="iconfont icon-gongzhonghao"></span>
-        <span class="content">犀牛小哥</span>
+        <span class="content">瑞德音信息</span>
       </li>
       <li>
         <span class="iconfont icon-youxiang"></span>

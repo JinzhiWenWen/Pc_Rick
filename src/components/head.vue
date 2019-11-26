@@ -18,35 +18,35 @@
               <li>
                 <router-link :to="{name:'aboutUs'}" :class="{'active':activeArr[1]}" @click.native="changeTab(1)">关于我们</router-link>
               </li>
-              <li>
-                <router-link :to="{name:'servicePlatformView'}"  :class="{'active':activeArr[2]}" @click.native="changeTab(2)">犀牛小哥平台</router-link>
+              <!-- <li> -->
+                <!-- <router-link :to="{name:'servicePlatformView'}"  :class="{'active':activeArr[2]}" @click.native="changeTab(2)">犀牛小哥平台</router-link> -->
                 <!-- <a href="http://www.rightservicetech.com:8080/index" target="_blank">犀牛小哥平台</a> -->
+              <!-- </li> -->
+              <li>
+                <router-link :to="{name:'PlanPro'}" :class="{'active':activeArr[2]}" @click.native="changeTab(2)">产品与解决方案</router-link>
               </li>
               <li>
-                <router-link :to="{name:'PlanPro'}" :class="{'active':activeArr[3]}" @click.native="changeTab(3)">产品与解决方案</router-link>
+                <router-link :to="{name:'successfulCaseView'}" :class="{'active':activeArr[3]}" @click.native="changeTab(3)">成功案例</router-link>
               </li>
               <li>
-                <router-link :to="{name:'successfulCaseView'}" :class="{'active':activeArr[4]}" @click.native="changeTab(4)">成功案例</router-link>
+                <router-link :to="{name:'newsView'}" :class="{'active':activeArr[4]}" @click.native="changeTab(4)">新闻中心</router-link>
               </li>
-              <li>
-                <router-link :to="{name:'newsView'}" :class="{'active':activeArr[5]}" @click.native="changeTab(5)">新闻中心</router-link>
-              </li>
-              <li>
+              <!-- <li> -->
                 <!-- <router-link :to="{name:'contactUs'}" :class="{'active':activeArr[5]}" @click.native="changeTab(5)">联系我们</router-link> -->
-              </li>
+              <!-- </li> -->
             </ul>
           </div>
-          <p class="header_oper" v-show="isLogin">
+          <!-- <p class="header_oper" v-show="isLogin">
             <span class="oper_box">
               <router-link :to="{name:'engineer'}" tag="span" @click.native="changeTab(6)">注册</router-link>
               <span>|</span>
               <router-link :to="{name:'LoginIn'}" tag="span" @click.native="changeTab(6)">登录</router-link>
             </span>
-          </p>
-          <p v-show="hasLogin">
+          </p> -->
+          <!-- <p v-show="hasLogin">
             欢迎您，<span style="color:#eb7a1d;cursor:pointer;" @click="comeMine()">{{userMes.nickname}}</span>(
             <span style="cursor:pointer;text-decoration:underline;color:#eb7a1d;" @click="loginOut()">退出</span>)
-          </p>
+          </p> -->
           <!-- <p class="admin" @click="admin">Admin</p> -->
           <!-- <img :src="doll" alt="" class="header-doll"> -->
           <Mas/>
@@ -97,14 +97,14 @@
     },
     methods:{
       ...mapMutations(['userMes_fn']),
-      comeMine(){//跳转个人中心
-        if(this.userMes.identityCode==3){
-          this.$router.push('/companyMine');
-        }else{
-          this.$router.push('/mine');
-        }
-        this.changeTab(6)
-      },
+      // comeMine(){//跳转个人中心
+      //   if(this.userMes.identityCode==3){
+      //     this.$router.push('/companyMine');
+      //   }else{
+      //     this.$router.push('/mine');
+      //   }
+      //   this.changeTab(6)
+      // },
       changeTab(num){
         for(var i=0;i<this.activeArr.length;i++){
           if(i!=num)
@@ -173,6 +173,7 @@
       margin-left: 30px;
     }
     .nav {
+      margin-left:300px;
       li{
         height: 51px;
       }

@@ -243,13 +243,14 @@
   .map{
     height: 880px;
     margin: 0 auto;
+    padding-top: 20px;
     .special-title{
       color: $fontColor;
     }
     .xnxg{
       display: inline-block;
       width: 150px;
-      height: 75px;
+      height: 55px;
       margin-right: 10px;
       background-size: 100% 100%;
       background-image: url("../../../static/images/xiniuxiaoge.png");

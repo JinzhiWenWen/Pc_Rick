@@ -8,9 +8,9 @@
       <div class="item-card">
         <tab-card></tab-card>
       </div>
-      <div class="item-card">
+      <!-- <div class="item-card" style="margin-top:50px;">
        <service-platform></service-platform>
-      </div>
+      </div> -->
       <div class="item-card">
         <service-personal></service-personal>
       </div>
@@ -32,9 +32,9 @@
 
     import WOW from 'wowjs'
     import carousel from './index/carousel'
-    import tabCard from './index/tabCard'
+    import tabCard from './index/tabCardNew'
     import servicePlatform from './index/servicePlatform'
-    import servicePersonal from './index/engBanner'
+    import servicePersonal from './index/servicePersonal'
     import news from './index/news'
     import mapBox from './index/map'
     import partner from './index/partner'
@@ -64,11 +64,11 @@
   .item-card{
     margin: 0 auto;
     background-size: 100% 100%;
-    &:nth-of-type(4){
+    &:nth-of-type(3){
       background-image: url("../../static/images/service_personal_bg.png");
       background-repeat: no-repeat;
     }
-    &:nth-of-type(6){
+    &:nth-of-type(5){
       background-image: url("../../static/images/news_bg.png");
     }
   }
