@@ -36,17 +36,17 @@
               <!-- </li> -->
             </ul>
           </div>
-          <!-- <p class="header_oper" v-show="isLogin">
+          <p class="header_oper" v-show="isLogin">
             <span class="oper_box">
               <router-link :to="{name:'engineer'}" tag="span" @click.native="changeTab(6)">注册</router-link>
               <span>|</span>
               <router-link :to="{name:'LoginIn'}" tag="span" @click.native="changeTab(6)">登录</router-link>
             </span>
-          </p> -->
-          <!-- <p v-show="hasLogin">
+          </p>
+          <p v-show="hasLogin">
             欢迎您，<span style="color:#eb7a1d;cursor:pointer;" @click="comeMine()">{{userMes.nickname}}</span>(
             <span style="cursor:pointer;text-decoration:underline;color:#eb7a1d;" @click="loginOut()">退出</span>)
-          </p> -->
+          </p>
           <!-- <p class="admin" @click="admin">Admin</p> -->
           <!-- <img :src="doll" alt="" class="header-doll"> -->
           <Mas/>
@@ -97,14 +97,14 @@
     },
     methods:{
       ...mapMutations(['userMes_fn']),
-      // comeMine(){//跳转个人中心
-      //   if(this.userMes.identityCode==3){
-      //     this.$router.push('/companyMine');
-      //   }else{
-      //     this.$router.push('/mine');
-      //   }
-      //   this.changeTab(6)
-      // },
+      comeMine(){//跳转个人中心
+        if(this.userMes.identityCode==3){
+          this.$router.push('/companyMine');
+        }else{
+          this.$router.push('/mine');
+        }
+        this.changeTab(6)
+      },
       changeTab(num){
         for(var i=0;i<this.activeArr.length;i++){
           if(i!=num)

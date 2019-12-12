@@ -32,7 +32,7 @@
 
     import WOW from 'wowjs'
     import carousel from './index/carousel'
-    import tabCard from './index/tabCardNew'
+    import tabCard from './index/tabCard'
     import servicePlatform from './index/servicePlatform'
     import servicePersonal from './index/servicePersonal'
     import news from './index/news'
